@@ -84,6 +84,8 @@ struct WebApi {
             throw WebServiceError.statusCode(statusCode, data)
         }
         
+        sleep(1)
+        
         return data
     }
 }

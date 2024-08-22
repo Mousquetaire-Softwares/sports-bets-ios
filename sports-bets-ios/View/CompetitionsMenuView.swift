@@ -8,23 +8,39 @@
 import SwiftUI
 
 struct CompetitionsMenuView: View {
-    @ObservedObject var competitionsLibrary : CompetitionsLibrary
+    @EnvironmentObject var competitionsLibrary : CompetitionsLibrary
     
     var body: some View {
-        if competitionsLibrary.apiState.isFetching && competitionsLibrary.competitions.isEmpty {
-            ProgressView(label: { Text("fetching...")})
-        } else {
+        ZStack {
             List {
                 ForEach(competitionsLibrary.competitions) {
                     competition in
-                    HStack {
-                        Text("\(competition.code)")
-                        Text("\(competition.description)")
+                    NavigationLink(value: competition.id) {
+                        HStack {
+                            Text("\(competition.code)")
+                            Text("\(competition.description)")
+                        }
                     }
                 }
             }
+            .navigationDestination(for: CompetitionModel.ID.self) {
+                competitionId in
+                let matchesBundle = MatchesBundle<RemoteMatchModel>()
+                MatchesListView(matchesBundle: matchesBundle)
+                    .task {
+                        await matchesBundle.fetchMatches(of: competitionId)
+                    }
+            }
             .refreshable {
                 await competitionsLibrary.fetchCompetitions()
+            }
+            .onAppear {
+                if competitionsLibrary.competitions.isEmpty {
+                    Task { await competitionsLibrary.fetchCompetitions() }
+                }
+            }
+            if competitionsLibrary.apiState.isFetching && competitionsLibrary.competitions.isEmpty {
+                ProgressView(label: { Text("fetching...")})
             }
         }
     }
@@ -32,6 +48,7 @@ struct CompetitionsMenuView: View {
 
 #Preview {
     let lib = CompetitionsLibrary()
-    Task { await lib.fetchCompetitions() }
-    return CompetitionsMenuView(competitionsLibrary: lib)
+//    Task { await lib.fetchCompetitions() }
+    return CompetitionsMenuView()
+        .environmentObject(lib)
 }

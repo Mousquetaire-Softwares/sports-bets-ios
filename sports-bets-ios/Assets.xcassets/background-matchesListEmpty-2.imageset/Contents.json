@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "terrain-district-14459768_10154647425888969_1112003356_n-696x392.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

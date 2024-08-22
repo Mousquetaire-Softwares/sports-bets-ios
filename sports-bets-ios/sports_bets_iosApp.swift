@@ -10,6 +10,8 @@ import SwiftData
 
 @main
 struct sports_bets_iosApp: App {
+    @StateObject var competitionsLibrary = CompetitionsLibrary()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -26,6 +28,7 @@ struct sports_bets_iosApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(competitionsLibrary)
         }
         .modelContainer(sharedModelContainer)
     }

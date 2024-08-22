@@ -9,7 +9,7 @@ import Foundation
 
 class CompetitionsLibrary : ObservableObject {
     @Published private(set) var competitions : [CompetitionModel] = []
-    @Published private(set) var apiState = ApiState.none
+    @Published private(set) var apiState = ApiState.notInitialized
     
     func fetchCompetitions() async {
         do {

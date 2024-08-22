@@ -14,6 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationSplitView {
+            CompetitionsMenuView()
             List {
                 ForEach(items) { item in
                     NavigationLink {
@@ -24,16 +25,16 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    EditButton()
+//                }
+//                ToolbarItem {
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
+//                }
+//            }
         } detail: {
             Text("Select an item")
         }
@@ -56,6 +57,8 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    let lib = CompetitionsLibrary()
+    return ContentView()
         .modelContainer(for: Item.self, inMemory: true)
+        .environmentObject(lib)
 }

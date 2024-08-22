@@ -9,7 +9,7 @@ import Foundation
 
 class MatchesBundle<Match : MatchModel> : ObservableObject {
     @Published var matches = [Match]()
-    @Published private(set) var apiState = ApiState.none
+    @Published private(set) var apiState = ApiState.notInitialized
 }
 
 extension MatchesBundle where Match == RemoteMatchModel {
