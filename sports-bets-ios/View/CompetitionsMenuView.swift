@@ -14,11 +14,13 @@ struct CompetitionsMenuView: View {
         if competitionsLibrary.apiState.isFetching && competitionsLibrary.competitions.isEmpty {
             ProgressView(label: { Text("fetching...")})
         } else {
-            List(competitionsLibrary.competitions) {
-                competition in
-                HStack {
-                    Text("\(competition.idt)")
-                    Text("\(competition.lib)")
+            List {
+                ForEach(competitionsLibrary.competitions) {
+                    competition in
+                    HStack {
+                        Text("\(competition.code)")
+                        Text("\(competition.description)")
+                    }
                 }
             }
             .refreshable {

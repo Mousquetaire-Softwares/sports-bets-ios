@@ -30,4 +30,12 @@ struct BackendData {
         let Grp_Cod : String?
         let Journee_Lib : String
     }
+    
+    struct Competition : Decodable {
+        let idt : Int
+        let cod : String
+        let lib : String
+        let etFin : String
+        let etGrp : String
+    }
 }
