@@ -28,7 +28,7 @@ final class MatchModelTests: XCTestCase {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let backendData = try decoder.decode(RemoteMatchModel.RemoteData.self, from: data)
-        return RemoteMatchModel(matchModel: backendData)
+        return RemoteMatchModel(remoteData: backendData)
     }
         
     func test_DteHreDate_ShouldNotBeNil() throws {

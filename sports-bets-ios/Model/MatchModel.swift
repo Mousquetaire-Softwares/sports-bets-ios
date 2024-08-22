@@ -29,23 +29,23 @@ struct RemoteMatchModel : MatchModel {
     typealias RemoteData = BackendData.Match
     typealias RemoteApi = BackendApi.Match
     
-    init(matchModel: BackendData.Match) {
-        self.remoteMatchModel = matchModel
+    init(remoteData: RemoteData) {
+        self.remoteData = remoteData
     }
-    private var remoteMatchModel : RemoteData
+    private var remoteData : RemoteData
     
-    var id : Int { remoteMatchModel.Idt }
-    var rankOrder : Int { remoteMatchModel.Num }
-    var stadium : String { remoteMatchModel.Stade_Nom }
-    var city : String { remoteMatchModel.Ville_Nom }
-    var localTeamId : Int { remoteMatchModel.team_idt_Dom }
-    var localTeamName : String { remoteMatchModel.Nom_Dom }
-    var localTeamScore : Int { remoteMatchModel.Score_Dom }
-    var externalTeamId : Int { remoteMatchModel.team_idt_Ext }
-    var externalTeamName : String { remoteMatchModel.Nom_Ext }
-    var externalTeamScore : Int { remoteMatchModel.Score_Ext }
-    var competitionGroup : String? { remoteMatchModel.Grp_Cod }
-    var competitionPhaseDescription : String { remoteMatchModel.Journee_Lib }
+    var id : Int { remoteData.Idt }
+    var rankOrder : Int { remoteData.Num }
+    var stadium : String { remoteData.Stade_Nom }
+    var city : String { remoteData.Ville_Nom }
+    var localTeamId : Int { remoteData.team_idt_Dom }
+    var localTeamName : String { remoteData.Nom_Dom }
+    var localTeamScore : Int { remoteData.Score_Dom }
+    var externalTeamId : Int { remoteData.team_idt_Ext }
+    var externalTeamName : String { remoteData.Nom_Ext }
+    var externalTeamScore : Int { remoteData.Score_Ext }
+    var competitionGroup : String? { remoteData.Grp_Cod }
+    var competitionPhaseDescription : String { remoteData.Journee_Lib }
 
     var localTeamScoreBet : Int?
     var externalTeamScoreBet : Int?
@@ -53,7 +53,7 @@ struct RemoteMatchModel : MatchModel {
     var eventDate: Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        let usefulDate = formatter.date(from: remoteMatchModel.DteHre)
+        let usefulDate = formatter.date(from: remoteData.DteHre)
         return usefulDate
     }
 }

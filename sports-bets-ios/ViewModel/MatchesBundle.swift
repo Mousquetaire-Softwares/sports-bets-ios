@@ -34,6 +34,6 @@ extension MatchesBundle where Match == RemoteMatchModel {
         jsonDecoder.dateDecodingStrategy = .iso8601
         let matchesModel = try jsonDecoder.decode([Match.RemoteData].self, from: data)
         
-        return matchesModel.map{ RemoteMatchModel(matchModel: $0) }
+        return matchesModel.map{ RemoteMatchModel(remoteData: $0) }
     }
 }
