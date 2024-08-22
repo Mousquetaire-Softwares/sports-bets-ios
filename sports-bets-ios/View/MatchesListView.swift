@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MatchesList: View {
-    @ObservedObject var matchesBundle : MatchesBundle
+struct MatchesListView<Match : MatchModel>: View {
+    @ObservedObject var matchesBundle : MatchesBundle<Match>
     
     var body: some View {
         ScrollView {
@@ -25,7 +25,7 @@ struct MatchesList: View {
         }
         .refreshable {
             Task{
-                await matchesBundle.fetchMatches(of: 3)
+//                await matchesBundle.fetchMatches(of: 3)
             }
         }
     }
@@ -36,7 +36,7 @@ struct MatchesList: View {
 }
 
 #Preview {
-    let bundle = MatchesBundle()
+    let bundle = MatchesBundle<RemoteMatchModel>()
     Task { await bundle.fetchMatches(of:3) }
-    return MatchesList(matchesBundle: bundle)
+    return MatchesListView(matchesBundle: bundle)
 }

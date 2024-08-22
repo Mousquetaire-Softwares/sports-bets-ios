@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MatchView: View {
+struct MatchView<Match : MatchModel>: View {
     @Binding var match : Match
     
     var body: some View {
@@ -33,11 +33,11 @@ struct MatchView: View {
                     header
                     Spacer()
                     HStack(alignment: .center) {
-                        Text("\(match.Nom_Dom)")
+                        Text("\(match.localTeamName)")
                         Image(systemName: "star.fill")
                         resultWithBet
                         Image(systemName: "star.fill")
-                        Text("\(match.Nom_Ext)")
+                        Text("\(match.externalTeamName)")
                     }
                     Spacer()
                 }
@@ -47,16 +47,16 @@ struct MatchView: View {
     
     @ViewBuilder
     private var header : some View {
-        Text("Match n°\(match.Num), le \(match.DteHreDate!.formatted(date: .numeric, time: .shortened))")
-        Text("\(match.Journee_Lib)")
-        let Grp_Lib : String = {
-            if let Grp_Cod = match.Grp_Cod {
-                return "Groupe \(Grp_Cod), "
+        Text("Match n°\(match.rankOrder), le \(match.eventDate!.formatted(date: .numeric, time: .shortened))")
+        Text("\(match.competitionPhaseDescription)")
+        let competitionGroupLabel : String = {
+            if let competitionGroup = match.competitionGroup {
+                return "Groupe \(competitionGroup), "
             } else {
                 return .empty
             }
         }()
-        Text("\(Grp_Lib)Stade \(match.Stade_Nom)")
+        Text("\(competitionGroupLabel)Stade \(match.stadium)")
             .font(.footnote)
             .italic()
     }
@@ -65,19 +65,19 @@ struct MatchView: View {
     private var resultWithBet : some View {
         Grid {
             GridRow {
-                Text("\(match.Score_Dom)")
+                Text("\(match.localTeamScore)")
                     .modifier(Goals())
                     .font(.title)
-                Text("\(match.Score_Ext)")
+                Text("\(match.externalTeamScore)")
                     .modifier(Goals())
                     .font(.title)
             }
             
             GridRow {
-                TextField("score", value: $match.Bet_Dom, formatter: NumberFormatter())
+                TextField("score", value: $match.localTeamScoreBet, formatter: NumberFormatter())
                     .modifier(Goals())
                 
-                TextField("", value: $match.Bet_Ext, formatter: NumberFormatter())
+                TextField("", value: $match.externalTeamScoreBet, formatter: NumberFormatter())
                     .modifier(Goals())
             }
         }

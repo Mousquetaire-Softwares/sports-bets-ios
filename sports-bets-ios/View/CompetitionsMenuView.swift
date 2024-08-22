@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CompetitionsMenu: View {
+struct CompetitionsMenuView: View {
     @ObservedObject var competitionsLibrary : CompetitionsLibrary
     
     var body: some View {
@@ -17,7 +17,7 @@ struct CompetitionsMenu: View {
             List(competitionsLibrary.competitions) {
                 competition in
                 HStack {
-                    Text("\(competition.id)")
+                    Text("\(competition.idt)")
                     Text("\(competition.lib)")
                 }
             }
@@ -29,7 +29,7 @@ struct CompetitionsMenu: View {
 }
 
 #Preview {
-    var lib = CompetitionsLibrary()
+    let lib = CompetitionsLibrary()
     Task { await lib.fetchCompetitions() }
-    return CompetitionsMenu(competitionsLibrary: lib)
+    return CompetitionsMenuView(competitionsLibrary: lib)
 }

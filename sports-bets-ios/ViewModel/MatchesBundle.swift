@@ -7,15 +7,17 @@
 
 import Foundation
 
-class MatchesBundle : ObservableObject {
+class MatchesBundle<Match : MatchModel> : ObservableObject {
     @Published var matches = [Match]()
     @Published private(set) var apiState = ApiState.none
+}
 
+extension MatchesBundle where Match == RemoteMatchModel {
     
     func fetchMatches(of competitionEdition: Int) async {
         do {
             apiState = .fetching
-            let data = try await WebApi.fetchData(for: BackendApi.Match.getAll(ofCompetitionId: competitionEdition))
+            let data = try await WebApi.fetchData(for: Match.RemoteApi.getAll(ofCompetitionId: competitionEdition))
 //            print("\(String(decoding: data, as: UTF8.self))")
             
             matches = try initMatches(from: data)
@@ -30,6 +32,8 @@ class MatchesBundle : ObservableObject {
         print("\(String(decoding: data, as: UTF8.self))")
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
-        return try jsonDecoder.decode([Match].self, from: data)
+        let matchesModel = try jsonDecoder.decode([Match.RemoteData].self, from: data)
+        
+        return matchesModel.map{ RemoteMatchModel(matchModel: $0) }
     }
 }

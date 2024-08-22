@@ -14,8 +14,4 @@ struct Competition : Decodable, Identifiable {
     let lib : String
     let etFin : String
     let etGrp : String
-    
-//    init(_ json:Data) throws {
-//        self = try JSONDecoder().decode(Competition.self, from: json)
-//    }
 }

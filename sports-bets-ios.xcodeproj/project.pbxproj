@@ -15,18 +15,19 @@
 		B0E304022C733E2B00E0877C /* sports_bets_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304012C733E2B00E0877C /* sports_bets_iosTests.swift */; };
 		B0E3040C2C733E2B00E0877C /* sports_bets_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3040B2C733E2B00E0877C /* sports_bets_iosUITests.swift */; };
 		B0E3040E2C733E2B00E0877C /* sports_bets_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3040D2C733E2B00E0877C /* sports_bets_iosUITestsLaunchTests.swift */; };
-		B0E3041E2C7343E200E0877C /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3041D2C7343E200E0877C /* Match.swift */; };
+		B0E3041E2C7343E200E0877C /* BackendData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3041D2C7343E200E0877C /* BackendData.swift */; };
 		B0E304202C7367CA00E0877C /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3041F2C7367CA00E0877C /* Competition.swift */; };
 		B0E304222C736A1200E0877C /* CompetitionsLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304212C736A1200E0877C /* CompetitionsLibrary.swift */; };
 		B0E304252C73722100E0877C /* BackendApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304242C73722100E0877C /* BackendApi.swift */; };
 		B0E304282C73932B00E0877C /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304272C73932B00E0877C /* StringExtensions.swift */; };
 		B0E3042A2C73997000E0877C /* WebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304292C73997000E0877C /* WebApi.swift */; };
-		B0E3042C2C748BD400E0877C /* CompetitionsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3042B2C748BD400E0877C /* CompetitionsMenu.swift */; };
-		B0E3042E2C74C2A600E0877C /* MatchesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3042D2C74C2A600E0877C /* MatchesList.swift */; };
+		B0E3042C2C748BD400E0877C /* CompetitionsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3042B2C748BD400E0877C /* CompetitionsMenuView.swift */; };
+		B0E3042E2C74C2A600E0877C /* MatchesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3042D2C74C2A600E0877C /* MatchesListView.swift */; };
 		B0E304302C74C6C700E0877C /* ApiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E3042F2C74C6C700E0877C /* ApiState.swift */; };
 		B0E304322C74D75200E0877C /* MatchesBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304312C74D75200E0877C /* MatchesBundle.swift */; };
-		B0E304362C75EB0800E0877C /* MatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304352C75EB0800E0877C /* MatchTests.swift */; };
+		B0E304362C75EB0800E0877C /* MatchModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304352C75EB0800E0877C /* MatchModelTests.swift */; };
 		B0E304382C761FF300E0877C /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304372C761FF300E0877C /* MatchView.swift */; };
+		B0E3043A2C7640C300E0877C /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E304392C7640C300E0877C /* MatchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,18 +59,19 @@
 		B0E304072C733E2B00E0877C /* sports-bets-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sports-bets-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E3040B2C733E2B00E0877C /* sports_bets_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sports_bets_iosUITests.swift; sourceTree = "<group>"; };
 		B0E3040D2C733E2B00E0877C /* sports_bets_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sports_bets_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B0E3041D2C7343E200E0877C /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		B0E3041D2C7343E200E0877C /* BackendData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendData.swift; sourceTree = "<group>"; };
 		B0E3041F2C7367CA00E0877C /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		B0E304212C736A1200E0877C /* CompetitionsLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionsLibrary.swift; sourceTree = "<group>"; };
 		B0E304242C73722100E0877C /* BackendApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApi.swift; sourceTree = "<group>"; };
 		B0E304272C73932B00E0877C /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		B0E304292C73997000E0877C /* WebApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebApi.swift; sourceTree = "<group>"; };
-		B0E3042B2C748BD400E0877C /* CompetitionsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionsMenu.swift; sourceTree = "<group>"; };
-		B0E3042D2C74C2A600E0877C /* MatchesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesList.swift; sourceTree = "<group>"; };
+		B0E3042B2C748BD400E0877C /* CompetitionsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionsMenuView.swift; sourceTree = "<group>"; };
+		B0E3042D2C74C2A600E0877C /* MatchesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesListView.swift; sourceTree = "<group>"; };
 		B0E3042F2C74C6C700E0877C /* ApiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiState.swift; sourceTree = "<group>"; };
 		B0E304312C74D75200E0877C /* MatchesBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesBundle.swift; sourceTree = "<group>"; };
-		B0E304352C75EB0800E0877C /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
+		B0E304352C75EB0800E0877C /* MatchModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModelTests.swift; sourceTree = "<group>"; };
 		B0E304372C761FF300E0877C /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		B0E304392C7640C300E0877C /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +166,8 @@
 		B0E3041A2C733EA800E0877C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B0E3041D2C7343E200E0877C /* Match.swift */,
 				B0E3041F2C7367CA00E0877C /* Competition.swift */,
+				B0E304392C7640C300E0877C /* MatchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,8 +184,8 @@
 		B0E3041C2C733EB800E0877C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0E3042B2C748BD400E0877C /* CompetitionsMenu.swift */,
-				B0E3042D2C74C2A600E0877C /* MatchesList.swift */,
+				B0E3042B2C748BD400E0877C /* CompetitionsMenuView.swift */,
+				B0E3042D2C74C2A600E0877C /* MatchesListView.swift */,
 				B0E304372C761FF300E0877C /* MatchView.swift */,
 			);
 			path = View;
@@ -195,6 +197,7 @@
 				B0E3042F2C74C6C700E0877C /* ApiState.swift */,
 				B0E304292C73997000E0877C /* WebApi.swift */,
 				B0E304242C73722100E0877C /* BackendApi.swift */,
+				B0E3041D2C7343E200E0877C /* BackendData.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -217,7 +220,7 @@
 		B0E304342C75EA9400E0877C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B0E304352C75EB0800E0877C /* MatchTests.swift */,
+				B0E304352C75EB0800E0877C /* MatchModelTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,17 +357,18 @@
 			files = (
 				B0E304282C73932B00E0877C /* StringExtensions.swift in Sources */,
 				B0E303F12C733E2900E0877C /* ContentView.swift in Sources */,
-				B0E3042E2C74C2A600E0877C /* MatchesList.swift in Sources */,
-				B0E3042C2C748BD400E0877C /* CompetitionsMenu.swift in Sources */,
+				B0E3042E2C74C2A600E0877C /* MatchesListView.swift in Sources */,
+				B0E3042C2C748BD400E0877C /* CompetitionsMenuView.swift in Sources */,
 				B0E304382C761FF300E0877C /* MatchView.swift in Sources */,
 				B0E304202C7367CA00E0877C /* Competition.swift in Sources */,
 				B0E304302C74C6C700E0877C /* ApiState.swift in Sources */,
+				B0E3043A2C7640C300E0877C /* MatchModel.swift in Sources */,
 				B0E304322C74D75200E0877C /* MatchesBundle.swift in Sources */,
 				B0E303F32C733E2900E0877C /* Item.swift in Sources */,
 				B0E304222C736A1200E0877C /* CompetitionsLibrary.swift in Sources */,
 				B0E3042A2C73997000E0877C /* WebApi.swift in Sources */,
 				B0E303EF2C733E2900E0877C /* sports_bets_iosApp.swift in Sources */,
-				B0E3041E2C7343E200E0877C /* Match.swift in Sources */,
+				B0E3041E2C7343E200E0877C /* BackendData.swift in Sources */,
 				B0E304252C73722100E0877C /* BackendApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0E304022C733E2B00E0877C /* sports_bets_iosTests.swift in Sources */,
-				B0E304362C75EB0800E0877C /* MatchTests.swift in Sources */,
+				B0E304362C75EB0800E0877C /* MatchModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,25 +8,27 @@
 import XCTest
 @testable import sports_bets_ios
 
-final class MatchTests: XCTestCase {
+final class MatchModelTests: XCTestCase {
     let jsonData1 = """
             {"Idt":646,"Num":7,"Hre":"21:00:00","Stade_Nom":"MHPArena","Stade_Capacite":60441,"Ville_Nom":"Stuttgart","Fnt_cod":"GER","Dte":"2024-06-16","DteHre":"2024-06-16T16:00:00.000Z","MatchTeam_Idt_Dom":930,"team_idt_Dom":48,"Nom_Dom":"Serbie","Score_Dom":0,"MatchTeam_Idt_Ext":931,"team_idt_Ext":39,"Nom_Ext":"Angleterre","Score_Ext":1,"Grp_Cod":"C","Journee_Lib":"Phase de Groupe - Journée 1"}
             """.data(using: .utf8)!
-    var sut : Match!
+    var remoteSut : RemoteMatchModel!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        sut = try initMatch(from: jsonData1)
+        remoteSut = try initRemoteMatch(from: jsonData1)
     }
     
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        remoteSut = nil
     }
 
-    func initMatch(from data:Data) throws -> Match {
+    func initRemoteMatch(from data:Data) throws -> RemoteMatchModel {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        return try decoder.decode(Match.self, from: data)
+        let backendData = try decoder.decode(RemoteMatchModel.RemoteData.self, from: data)
+        return RemoteMatchModel(matchModel: backendData)
     }
         
     func test_DteHreDate_ShouldNotBeNil() throws {
@@ -35,7 +37,7 @@ final class MatchTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        XCTAssertNotNil(sut.DteHreDate)
+        XCTAssertNotNil(remoteSut.eventDate)
     }
 //
 //    func testPerformanceExample() throws {
