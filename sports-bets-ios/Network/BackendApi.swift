@@ -7,14 +7,6 @@
 
 import Foundation
 
-protocol WebApiNode {
-    static var baseUrl : URL { get }
-}
-
-protocol WebApiEndpoint {
-    var baseUrl: URL { get }
-    var queryItems: [URLQueryItem]? { get }
-}
 
 enum BackendApi : WebApiNode {
     static let baseUrl = URL(string: "http://localhost:7700/api/v1")!

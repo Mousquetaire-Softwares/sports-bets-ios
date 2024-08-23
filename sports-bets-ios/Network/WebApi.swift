@@ -20,43 +20,17 @@ enum WebServiceError: Error {
     case statusCode(Int, Data)
 }
 
+
+protocol WebApiNode {
+    static var baseUrl : URL { get }
+}
+
+protocol WebApiEndpoint {
+    var baseUrl: URL { get }
+    var queryItems: [URLQueryItem]? { get }
+}
+
 struct WebApi {
-    //    static func buildRequest(for url: URL, method: HTTPMethod, body: Data? = nil) -> URLRequest? {
-    //        var request = URLRequest(url: url)
-    //        request.httpMethod = method.rawValue
-    //
-    //        if let bodyData = body {
-    //            request.httpBody = bodyData
-    //            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    //        }
-    //
-    //        // Add any additional headers if needed
-    //        request.setValue("application/json", forHTTPHeaderField: "Accept")
-    //
-    //        return request
-    //    }
-    //
-    //
-    //    static func buildRequest(for url: URL, method: HTTPMethod, queryParams: [String: String]? = nil, body: Data? = nil) -> URLRequest? {
-    //        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-    //
-    //        if let queryParams = queryParams {
-    //            components?.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
-    //        }
-    //
-    //
-    //        var request = URLRequest(url: url)
-    //        request.httpMethod = method.rawValue
-    //
-    ////        if let bodyData = body {
-    ////            request.httpBody = bodyData
-    ////            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    ////        }
-    ////
-    ////        request.setValue("application/json", forHTTPHeaderField: "Accept")
-    //
-    //        return request
-    //    }
     
     static func buildRequest(for endpoint: WebApiEndpoint) throws -> URLRequest {
         var request = URLRequest(url: try endpoint.url)
