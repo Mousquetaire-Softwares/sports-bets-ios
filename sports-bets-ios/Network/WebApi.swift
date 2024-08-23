@@ -8,11 +8,22 @@
 import Foundation
 
 
-enum HTTPMethod: String {
+enum HTTPMethod {
+    typealias Parameters = [String:String]
     case GET
-    case POST
+    case POST(parametersAsJsonObject:Any)
     case PUT
     case DELETE
+    
+    var URLRequestValue: String {
+        switch(self) {
+        case .GET: "GET"
+        case .POST: "POST"
+        case .PUT: "PUT"
+        case .DELETE: "DELETE"
+        }
+    }
+
 }
 
 enum WebServiceError: Error {
@@ -28,13 +39,25 @@ protocol WebApiNode {
 protocol WebApiEndpoint {
     var baseUrl: URL { get }
     var queryItems: [URLQueryItem]? { get }
+    var httpMethod : HTTPMethod { get }
 }
 
 struct WebApi {
     
     static func buildRequest(for endpoint: WebApiEndpoint) throws -> URLRequest {
         var request = URLRequest(url: try endpoint.url)
-        request.httpMethod = HTTPMethod.GET.rawValue
+        
+        request.httpMethod = endpoint.httpMethod.URLRequestValue
+        switch(endpoint.httpMethod) {
+        case .POST(let parameters):
+            let httpBody = try JSONSerialization.data(
+                withJSONObject: parameters,
+                options: []
+            )
+            request.httpBody = httpBody
+        default:
+            break
+        }
         
         // Add any additional headers if needed
         request.setValue("application/json", forHTTPHeaderField: "Accept")

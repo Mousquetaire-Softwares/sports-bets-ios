@@ -22,7 +22,7 @@ enum BackendApi : WebApiNode {
 
 extension BackendApi {
     enum Competition : WebApiNode, WebApiEndpoint {
-        static let baseUrl = BackendApi.baseUrl.appendingPathComponent("competition")
+        static let baseUrl = BackendApi.baseUrl.appending(path: "competition")
         case getAll
         
         var baseUrl: URL {
@@ -31,16 +31,14 @@ extension BackendApi {
                 return Self.baseUrl
             }
         }
-        var queryItems: [URLQueryItem]? {
-            return nil
-        }
+        var queryItems: [URLQueryItem]? { nil }
 
-        
+        var httpMethod : HTTPMethod { .GET }
     }
 }
 extension BackendApi {
     enum Match : WebApiNode, WebApiEndpoint {
-        static let baseUrl = BackendApi.baseUrl.appendingPathComponent("matches")
+        static let baseUrl = BackendApi.baseUrl.appending(path: "matches")
         case getAll(ofCompetitionId: Int)
 
         
@@ -57,24 +55,44 @@ extension BackendApi {
             }
         }
 
-        
+        var httpMethod : HTTPMethod { .GET }
     }
 }
+
+//extension BackendApi {
+//    enum CompetitionEdition : WebApiNode {
+//        static let baseUrl = BackendApi.baseUrl.appendingPathComponent("cmpEdt")
+//
+//        static func getAll(ofCompetitionId id: Int) -> URL {
+//            baseUrl.appendingPathComponent("?Idt=\(id)")
+//        }
+//        
+//        var httpMethod : HTTPMethod { .GET }
+//    }
+//}
 
 extension BackendApi {
-    enum CompetitionEdition : WebApiNode {
-        static let baseUrl = BackendApi.baseUrl.appendingPathComponent("cmpEdt")
+    enum User : WebApiNode, WebApiEndpoint {
+        static let baseUrl = BackendApi.baseUrl.appending(path: "user")
+        case login(email:String, password:String)
 
-        static func getAll(ofCompetitionId id: Int) -> URL {
-            baseUrl.appendingPathComponent("?Idt=\(id)")
-        }
         
+        var baseUrl: URL {
+            switch(self) {
+            case .login:
+                return Self.baseUrl.appending(path: "login")
+            }
+        }
+        var queryItems: [URLQueryItem]? { nil }
+        
+        
+        var httpMethod : HTTPMethod { 
+            switch(self) {
+            case .login(let email, let password):
+                let parameterDictionary = ["email": email, "password": password]
+                return .POST(parametersAsJsonObject: parameterDictionary)
+            }
+        }
     }
 }
 
-
-struct test {
-    static var url : URL? = try? BackendApi.Match.getAll(ofCompetitionId: 3).url
-    static var url2 : URL? = try? BackendApi.Competition.getAll.url
-    static var url3 : URL = BackendApi.CompetitionEdition.getAll(ofCompetitionId: 3)
-}
