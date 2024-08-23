@@ -28,11 +28,11 @@ extension MatchesBundle where Match == RemoteMatchModel {
     }
     
     
-    private func initMatches(from data: Data) throws -> [Match] {
+    internal func initMatches(from data: Data) throws -> [Match] {
         print("\(String(decoding: data, as: UTF8.self))")
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
-        let matchesModel = try jsonDecoder.decode([Match.RemoteData].self, from: data)
+        let matchesModel = try jsonDecoder.decode([Match.RemoteDTO].self, from: data)
         
         return matchesModel.map{ RemoteMatchModel(remoteData: $0) }
     }

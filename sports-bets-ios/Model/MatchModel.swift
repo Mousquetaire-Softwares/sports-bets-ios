@@ -14,10 +14,10 @@ protocol MatchModel : Identifiable {
     var city : String { get }
     var localTeamId : Int { get }
     var localTeamName : String { get }
-    var localTeamScore : Int { get }
+    var localTeamScore : Int? { get }
     var externalTeamId : Int { get }
     var externalTeamName : String { get }
-    var externalTeamScore : Int { get }
+    var externalTeamScore : Int? { get }
     var competitionGroup : String? { get }
     var competitionPhaseDescription : String { get }
     var localTeamScoreBet : Int? { get set }
@@ -26,13 +26,13 @@ protocol MatchModel : Identifiable {
 }
 
 struct RemoteMatchModel : MatchModel {
-    typealias RemoteData = BackendData.Match
+    typealias RemoteDTO = BackendDTO.Match
     typealias RemoteApi = BackendApi.Match
     
-    init(remoteData: RemoteData) {
+    init(remoteData: RemoteDTO) {
         self.remoteData = remoteData
     }
-    private var remoteData : RemoteData
+    private var remoteData : RemoteDTO
     
     var id : Int { remoteData.Idt }
     var rankOrder : Int { remoteData.Num }
@@ -40,10 +40,10 @@ struct RemoteMatchModel : MatchModel {
     var city : String { remoteData.Ville_Nom }
     var localTeamId : Int { remoteData.team_idt_Dom }
     var localTeamName : String { remoteData.Nom_Dom }
-    var localTeamScore : Int { remoteData.Score_Dom }
+    var localTeamScore : Int? { remoteData.Score_Dom }
     var externalTeamId : Int { remoteData.team_idt_Ext }
     var externalTeamName : String { remoteData.Nom_Ext }
-    var externalTeamScore : Int { remoteData.Score_Ext }
+    var externalTeamScore : Int? { remoteData.Score_Ext }
     var competitionGroup : String? { remoteData.Grp_Cod }
     var competitionPhaseDescription : String { remoteData.Journee_Lib }
 

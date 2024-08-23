@@ -24,7 +24,7 @@ class CompetitionsLibrary : ObservableObject {
     
     
     private func initCompetitions(from data: Data) throws -> [CompetitionModel] {
-        let competitionsRemoteData = try JSONDecoder().decode([CompetitionModel.RemoteData].self, from: data)
+        let competitionsRemoteData = try JSONDecoder().decode([CompetitionModel.RemoteDTO].self, from: data)
         return competitionsRemoteData.map{ CompetitionModel(remoteData: $0) }
     }
     

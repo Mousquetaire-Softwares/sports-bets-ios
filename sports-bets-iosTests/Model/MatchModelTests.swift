@@ -27,7 +27,7 @@ final class MatchModelTests: XCTestCase {
     func initRemoteMatch(from data:Data) throws -> RemoteMatchModel {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        let backendData = try decoder.decode(RemoteMatchModel.RemoteData.self, from: data)
+        let backendData = try decoder.decode(RemoteMatchModel.RemoteDTO.self, from: data)
         return RemoteMatchModel(remoteData: backendData)
     }
         

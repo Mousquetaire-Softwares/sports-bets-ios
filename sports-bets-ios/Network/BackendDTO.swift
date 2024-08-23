@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BackendData {
+struct BackendDTO {
     struct Match : Codable
     {
         let Idt : Int
@@ -22,11 +22,11 @@ struct BackendData {
         let MatchTeam_Idt_Dom : Int
         let team_idt_Dom : Int
         let Nom_Dom : String
-        let Score_Dom : Int
+        let Score_Dom : Int?
         let MatchTeam_Idt_Ext : Int
         let team_idt_Ext : Int
         let Nom_Ext : String
-        let Score_Ext : Int
+        let Score_Ext : Int?
         let Grp_Cod : String?
         let Journee_Lib : String
     }

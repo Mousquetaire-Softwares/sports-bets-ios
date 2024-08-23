@@ -65,10 +65,10 @@ struct MatchView<Match : MatchModel>: View {
     private var resultWithBet : some View {
         Grid {
             GridRow {
-                Text("\(match.localTeamScore)")
+                Text(match.localTeamScore.unwrappedDescriptionOrEmpty)
                     .modifier(Goals())
                     .font(.title)
-                Text("\(match.externalTeamScore)")
+                Text(match.externalTeamScore.unwrappedDescriptionOrEmpty)
                     .modifier(Goals())
                     .font(.title)
             }
