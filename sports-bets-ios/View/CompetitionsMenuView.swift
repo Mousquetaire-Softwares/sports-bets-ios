@@ -42,6 +42,9 @@ struct CompetitionsMenuView: View {
             if competitionsLibrary.apiState.isFetching && competitionsLibrary.competitions.isEmpty {
                 ProgressView(label: { Text("fetching...")})
             }
+            if let message = competitionsLibrary.apiState.failureMessage {
+                Text(message)
+            }
         }
     }
 }

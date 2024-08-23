@@ -8,13 +8,15 @@
 import Foundation
 
 class CompetitionsLibrary : ObservableObject {
+    typealias ModelRemoteApi = CompetitionModel.RemoteApi
+    
     @Published private(set) var competitions : [CompetitionModel] = []
     @Published private(set) var apiState = ApiState.notInitialized
     
     func fetchCompetitions() async {
         do {
             apiState = .fetching
-            let data = try await WebApi.fetchData(for: CompetitionModel.RemoteApi.getAll)
+            let data = try await WebApi.fetchData(for: ModelRemoteApi.GetAll())
             competitions = try initCompetitions(from: data)
             apiState = .loaded
         } catch {
@@ -24,8 +26,8 @@ class CompetitionsLibrary : ObservableObject {
     
     
     private func initCompetitions(from data: Data) throws -> [CompetitionModel] {
-        let competitionsRemoteData = try JSONDecoder().decode([CompetitionModel.RemoteDTO].self, from: data)
-        return competitionsRemoteData.map{ CompetitionModel(remoteData: $0) }
+        let remoteDTOs = try ModelRemoteApi.GetAll.decodeResponse(data)
+        return remoteDTOs.map{ CompetitionModel(remoteData: $0) }
     }
     
 }

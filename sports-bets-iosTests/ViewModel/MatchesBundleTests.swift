@@ -30,7 +30,7 @@ final class MatchesBundleTests: XCTestCase {
     
     func test_sutRemote_initMatches_withRemoteDataCompetitionId2_ShouldBeNotEmpty() async throws {
         // FIXME: RemoteMatchModel repetition - should be RemoteSut.Match
-        let jsonData = try await WebApi.fetchData(for: RemoteMatchModel.RemoteApi.getAll(ofCompetitionId: 2))
+        let jsonData = try await WebApi.fetchData(for: RemoteMatchModel.RemoteApi.GetAll(competitionId: 2))
         let initializedMatches = try sutRemote.initMatches(from: jsonData)
         
         XCTAssertFalse(initializedMatches.isEmpty)

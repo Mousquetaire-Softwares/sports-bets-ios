@@ -13,11 +13,12 @@ class MatchesBundle<Match : MatchModel> : ObservableObject {
 }
 
 extension MatchesBundle where Match == RemoteMatchModel {
+    typealias ModelRemoteApi = Match.RemoteApi
     
     func fetchMatches(of competitionEdition: Int) async {
         do {
             apiState = .fetching
-            let data = try await WebApi.fetchData(for: Match.RemoteApi.getAll(ofCompetitionId: competitionEdition))
+            let data = try await WebApi.fetchData(for: ModelRemoteApi.GetAll(competitionId: competitionEdition))
 //            print("\(String(decoding: data, as: UTF8.self))")
             
             matches = try initMatches(from: data)
@@ -29,11 +30,7 @@ extension MatchesBundle where Match == RemoteMatchModel {
     
     
     internal func initMatches(from data: Data) throws -> [Match] {
-        print("\(String(decoding: data, as: UTF8.self))")
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
-        let matchesModel = try jsonDecoder.decode([Match.RemoteDTO].self, from: data)
-        
-        return matchesModel.map{ RemoteMatchModel(remoteData: $0) }
+        let remoteDTOs = try ModelRemoteApi.GetAll.decodeResponse(data)
+        return remoteDTOs.map{ RemoteMatchModel(remoteData: $0) }
     }
 }

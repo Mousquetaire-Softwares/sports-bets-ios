@@ -63,6 +63,6 @@ struct MatchesListView<Match : MatchModel>: View {
 
 #Preview {
     let bundle = MatchesBundle<RemoteMatchModel>()
-    Task { await bundle.fetchMatches(of:1) }
+    Task { await bundle.fetchMatches(of:2) }
     return MatchesListView(matchesBundle: bundle)
 }

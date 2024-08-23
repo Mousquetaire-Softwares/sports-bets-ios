@@ -37,14 +37,23 @@ protocol WebApiNode {
 }
 
 protocol WebApiEndpoint {
+    associatedtype ResponseDTO
+    
     var baseUrl: URL { get }
     var queryItems: [URLQueryItem]? { get }
     var httpMethod : HTTPMethod { get }
+    static func decodeResponse(_ data: Data) throws -> [ResponseDTO]
+}
+
+extension WebApiEndpoint where ResponseDTO : Decodable {
+    static func decodeResponse(_ data: Data) throws -> [ResponseDTO] {
+        return try JSONDecoder().decode([ResponseDTO].self, from: data)
+    }
 }
 
 struct WebApi {
     
-    static func buildRequest(for endpoint: WebApiEndpoint) throws -> URLRequest {
+    static func buildRequest(for endpoint: some WebApiEndpoint) throws -> URLRequest {
         var request = URLRequest(url: try endpoint.url)
         
         request.httpMethod = endpoint.httpMethod.URLRequestValue
@@ -65,7 +74,7 @@ struct WebApi {
         return request
     }
     
-    static func fetchData(for endpoint: WebApiEndpoint) async throws -> Data {
+    static func fetchData(for endpoint: some WebApiEndpoint) async throws -> Data {
         let request = try buildRequest(for: endpoint)
         
         guard let url = request.url else {
