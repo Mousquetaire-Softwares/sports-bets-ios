@@ -79,9 +79,11 @@ struct WebApi {
     static func fetchData(for endpoint: some WebApiEndpoint) async throws -> Data {
         let request = try buildRequest(for: endpoint)
         
-        guard let url = request.url else {
-            throw URLError(.badURL)
-        }
+        #if DEBUG
+        print("calling \(endpoint.baseUrl)")
+        sleep(2)
+        #endif
+
         let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
@@ -91,8 +93,6 @@ struct WebApi {
         guard 200 ..< 300 ~= statusCode else {
             throw WebServiceError.statusCode(statusCode, data)
         }
-        
-        sleep(1)
         
         return data
     }
