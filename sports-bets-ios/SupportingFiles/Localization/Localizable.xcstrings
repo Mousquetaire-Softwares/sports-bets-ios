@@ -41,6 +41,17 @@
     "Item at %@" : {
 
     },
+    "Login.EmailField.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amazing Email"
+          }
+        }
+      }
+    },
     "Login.LoginButton.Title" : {
       "extractionState" : "manual",
       "localizations" : {
