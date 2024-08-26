@@ -1,0 +1,98 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@Stade %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@Stade %2$@"
+          }
+        }
+      }
+    },
+    "API.Fetching" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fetching"
+          }
+        }
+      }
+    },
+    "fetching..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fetching"
+          }
+        }
+      }
+    },
+    "Item at %@" : {
+
+    },
+    "Login.LoginButton.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send it to TheChurch"
+          }
+        }
+      }
+    },
+    "Login.PasswordField.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret thing"
+          }
+        }
+      }
+    },
+    "Login.UsernameField.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wonderful name"
+          }
+        }
+      }
+    },
+    "Match n°%lld, le %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Match n°%1$lld, le %2$@"
+          }
+        }
+      }
+    },
+    "No matches are scheduled here" : {
+
+    },
+    "score" : {
+
+    },
+    "Select an item" : {
+
+    }
+  },
+  "version" : "1.0"
+}
