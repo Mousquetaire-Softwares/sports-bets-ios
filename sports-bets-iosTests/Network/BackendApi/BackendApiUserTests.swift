@@ -19,7 +19,7 @@ final class BackendApiUserTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_WebApiFetchData_forSutLogin() async throws {
+    func test_WebApiFetchData_forSutLogin_WithValidLogin() async throws {
         let data = try await WebApi.fetchData(for: Sut.Login(userEmail: "fraternite76-bartman@yahoo.fr", userPassword: "fraternite76-bartman@yahoo.fr"))
         print("\(String(decoding: data, as: UTF8.self))")
         let remoteDTO = try Sut.Login.decodeResponse(data)
@@ -27,5 +27,13 @@ final class BackendApiUserTests: XCTestCase {
         
         XCTAssertTrue(remoteDTO.success)
     }
+//    func test_WebApiFetchData_forSutLogin_WithWrongLogin() async throws {
+//        let data = try await WebApi.fetchData(for: Sut.Login(userEmail: "foo", userPassword: "bar"))
+//        print("\(String(decoding: data, as: UTF8.self))")
+//        let remoteDTO = try Sut.Login.decodeResponse(data)
+//        print(remoteDTO)
+//        
+//        XCTAssertFalse(remoteDTO.success)
+//    }
 
 }
