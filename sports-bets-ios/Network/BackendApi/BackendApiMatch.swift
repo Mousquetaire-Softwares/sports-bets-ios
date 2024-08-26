@@ -12,26 +12,24 @@ extension BackendApi {
         static let baseUrl = BackendApi.baseUrl.appending(path: "matches")
         
         struct GetAll : WebApiEndpoint {
+            typealias ResponseDTO = [DTO]
             
             let competitionId: Int
-            
             let baseUrl: URL = Match.baseUrl
-            
             var queryItems: [URLQueryItem]? { [URLQueryItem(name: "cmpEdt", value: "\(competitionId)")] }
-            
             let httpMethod : HTTPMethod = .GET
             
-            static func decodeResponse(_ data: Data) throws -> [ResponseDTO] {
+            static func decodeResponse(_ data: Data) throws -> ResponseDTO {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.dateDecodingStrategy = .iso8601
-                return try jsonDecoder.decode([ResponseDTO].self, from: data)
+                return try jsonDecoder.decode(ResponseDTO.self, from: data)
             }
         }
     }
 }
 
 extension BackendApi.Match.GetAll {
-    struct ResponseDTO : Codable {
+    struct DTO : Codable {
         let Idt : Int
         let Num : Int
         let Hre : String

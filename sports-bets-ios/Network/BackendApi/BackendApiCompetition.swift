@@ -12,6 +12,8 @@ extension BackendApi {
         static let baseUrl = BackendApi.baseUrl.appending(path: "competition")
         
         struct GetAll : WebApiEndpoint {
+            typealias ResponseDTO = [DTO]
+            
             let baseUrl: URL = Competition.baseUrl
             let queryItems: [URLQueryItem]? = nil
             let httpMethod : HTTPMethod = .GET
@@ -43,7 +45,7 @@ extension BackendApi {
 
 
 extension BackendApi.Competition.GetAll {
-    struct ResponseDTO : Codable {
+    struct DTO : Codable {
         let idt : Int
         let cod : String
         let lib : String

@@ -27,7 +27,7 @@ protocol MatchModel : Identifiable {
 
 struct RemoteMatchModel : MatchModel {
     typealias RemoteApi = BackendApi.Match
-    typealias RemoteDTO = RemoteApi.GetAll.ResponseDTO
+    typealias RemoteDTO = RemoteApi.GetAll.DTO
     
     init(remoteData: RemoteDTO) {
         self.remoteData = remoteData

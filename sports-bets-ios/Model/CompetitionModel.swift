@@ -9,7 +9,7 @@ import Foundation
 
 struct CompetitionModel : Identifiable {
     typealias RemoteApi = BackendApi.Competition
-    typealias RemoteDTO = RemoteApi.GetAll.ResponseDTO
+    typealias RemoteDTO = RemoteApi.GetAll.DTO
     
     
     init(remoteData: RemoteDTO) {

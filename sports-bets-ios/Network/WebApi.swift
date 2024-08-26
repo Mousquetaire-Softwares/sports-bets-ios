@@ -42,12 +42,12 @@ protocol WebApiEndpoint {
     var baseUrl: URL { get }
     var queryItems: [URLQueryItem]? { get }
     var httpMethod : HTTPMethod { get }
-    static func decodeResponse(_ data: Data) throws -> [ResponseDTO]
+    static func decodeResponse(_ data: Data) throws -> ResponseDTO
 }
 
 extension WebApiEndpoint where ResponseDTO : Decodable {
-    static func decodeResponse(_ data: Data) throws -> [ResponseDTO] {
-        return try JSONDecoder().decode([ResponseDTO].self, from: data)
+    static func decodeResponse(_ data: Data) throws -> ResponseDTO {
+        return try JSONDecoder().decode(ResponseDTO.self, from: data)
     }
 }
 

@@ -10,6 +10,7 @@
 		B0AD171C2C78E3ED006A1AB8 /* BackendApiMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD171B2C78E3ED006A1AB8 /* BackendApiMatch.swift */; };
 		B0AD171E2C78E406006A1AB8 /* BackendApiCompetition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD171D2C78E406006A1AB8 /* BackendApiCompetition.swift */; };
 		B0AD17202C78E431006A1AB8 /* BackendApiUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD171F2C78E431006A1AB8 /* BackendApiUser.swift */; };
+		B0AD17232C78EAAC006A1AB8 /* BackendApiUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD17222C78EAAC006A1AB8 /* BackendApiUserTests.swift */; };
 		B0E303EF2C733E2900E0877C /* sports_bets_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */; };
 		B0E303F12C733E2900E0877C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F02C733E2900E0877C /* ContentView.swift */; };
 		B0E303F32C733E2900E0877C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F22C733E2900E0877C /* Item.swift */; };
@@ -56,6 +57,7 @@
 		B0AD171B2C78E3ED006A1AB8 /* BackendApiMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiMatch.swift; sourceTree = "<group>"; };
 		B0AD171D2C78E406006A1AB8 /* BackendApiCompetition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiCompetition.swift; sourceTree = "<group>"; };
 		B0AD171F2C78E431006A1AB8 /* BackendApiUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiUser.swift; sourceTree = "<group>"; };
+		B0AD17222C78EAAC006A1AB8 /* BackendApiUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiUserTests.swift; sourceTree = "<group>"; };
 		B0E303EB2C733E2900E0877C /* sports-bets-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sports-bets-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sports_bets_iosApp.swift; sourceTree = "<group>"; };
 		B0E303F02C733E2900E0877C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 				B0AD171B2C78E3ED006A1AB8 /* BackendApiMatch.swift */,
 				B0AD171D2C78E406006A1AB8 /* BackendApiCompetition.swift */,
 				B0AD171F2C78E431006A1AB8 /* BackendApiUser.swift */,
+			);
+			path = BackendApi;
+			sourceTree = "<group>";
+		};
+		B0AD17212C78EA95006A1AB8 /* BackendApi */ = {
+			isa = PBXGroup;
+			children = (
+				B0AD17222C78EAAC006A1AB8 /* BackendApiUserTests.swift */,
 			);
 			path = BackendApi;
 			sourceTree = "<group>";
@@ -235,6 +245,7 @@
 		B0E304332C75EA8500E0877C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B0AD17212C78EA95006A1AB8 /* BackendApi */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -412,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0E3043D2C7796EE00E0877C /* CompetitionsLibraryTests.swift in Sources */,
+				B0AD17232C78EAAC006A1AB8 /* BackendApiUserTests.swift in Sources */,
 				B0E3043F2C7797E000E0877C /* MatchesBundleTests.swift in Sources */,
 				B0E304022C733E2B00E0877C /* sports_bets_iosTests.swift in Sources */,
 				B0E304362C75EB0800E0877C /* MatchModelTests.swift in Sources */,

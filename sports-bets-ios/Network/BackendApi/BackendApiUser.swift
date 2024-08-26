@@ -7,29 +7,36 @@
 
 import Foundation
 
-extension BackendApi.User {
-    struct Login : WebApiEndpoint {
-        init(userEmail: String, userPassword: String) {
-            self.userEmail = userEmail
-            self.userPassword = userPassword
+extension BackendApi {
+    enum User : WebApiNode {
+        static let baseUrl = BackendApi.baseUrl.appending(path: "user")
+        
+        struct Login : WebApiEndpoint {
+            typealias ResponseDTO = DTO
             
-            let parameterDictionary = ["email": userEmail, "password": userPassword]
-            httpMethod = .POST(parametersAsJsonObject: parameterDictionary)
+            init(userEmail: String, userPassword: String) {
+                self.userEmail = userEmail
+                self.userPassword = userPassword
+                
+                let parameterDictionary = ["email": userEmail, "password": userPassword]
+                httpMethod = .POST(parametersAsJsonObject: parameterDictionary)
+            }
+            
+            let userEmail: String
+            let userPassword: String
+            
+            let baseUrl: URL = BackendApi.User.baseUrl.appending(path: "login")
+            
+            var queryItems: [URLQueryItem]?
+            var httpMethod : HTTPMethod
+            
+            
         }
-        
-        let userEmail: String
-        let userPassword: String
-        
-        let baseUrl: URL = BackendApi.User.baseUrl.appending(path: "login")
-        
-        var queryItems: [URLQueryItem]?
-        var httpMethod : HTTPMethod
-        
     }
 }
 
 extension BackendApi.User.Login {
-    struct ResponseDTO : Codable {
+    struct DTO : Codable {
         let success: Bool
         let user: User
         let token: String

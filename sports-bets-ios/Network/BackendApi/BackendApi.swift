@@ -14,10 +14,4 @@ enum BackendApi : WebApiNode {
 }
 
 
-extension BackendApi {
-    enum User : WebApiNode {
-        static let baseUrl = BackendApi.baseUrl.appending(path: "user")
-    }
-}
-
 
