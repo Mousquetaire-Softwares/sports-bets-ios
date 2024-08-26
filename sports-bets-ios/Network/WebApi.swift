@@ -80,7 +80,7 @@ struct WebApi {
         guard let url = request.url else {
             throw URLError(.badURL)
         }
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
             throw WebServiceError.invalidResponse(data, response)
