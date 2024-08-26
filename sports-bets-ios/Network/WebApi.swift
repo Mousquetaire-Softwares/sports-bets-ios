@@ -64,6 +64,9 @@ struct WebApi {
                 options: []
             )
             request.httpBody = httpBody
+            
+            request.allHTTPHeaderFields = request.allHTTPHeaderFields ?? [:]
+            request.allHTTPHeaderFields!["Content-Type"] = "application/json"
         default:
             break
         }

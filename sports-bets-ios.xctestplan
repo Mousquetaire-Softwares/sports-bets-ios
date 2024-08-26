@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "1E07D92A-192F-42A4-BC25-194791D6CF79",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:sports-bets-ios.xcodeproj",
+      "identifier" : "B0E303EA2C733E2900E0877C",
+      "name" : "sports-bets-ios"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:sports-bets-ios.xcodeproj",
+        "identifier" : "B0E303FC2C733E2B00E0877C",
+        "name" : "sports-bets-iosTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:sports-bets-ios.xcodeproj",
+        "identifier" : "B0E304062C733E2B00E0877C",
+        "name" : "sports-bets-iosUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
