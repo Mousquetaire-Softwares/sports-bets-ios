@@ -16,6 +16,7 @@
 		B0B625302C7CD7F700F6488C /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B6252F2C7CD7F700F6488C /* UserLoginView.swift */; };
 		B0B625322C7CD90400F6488C /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B625312C7CD90400F6488C /* UserLogin.swift */; };
 		B0B625362C7CDBFE00F6488C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B0B625352C7CDBFE00F6488C /* Localizable.xcstrings */; };
+		B0B6253B2C7DD74D00F6488C /* CallableApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B6253A2C7DD74D00F6488C /* CallableApi.swift */; };
 		B0E303EF2C733E2900E0877C /* sports_bets_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */; };
 		B0E303F12C733E2900E0877C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F02C733E2900E0877C /* ContentView.swift */; };
 		B0E303F32C733E2900E0877C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F22C733E2900E0877C /* Item.swift */; };
@@ -69,6 +70,7 @@
 		B0B6252F2C7CD7F700F6488C /* UserLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
 		B0B625312C7CD90400F6488C /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
 		B0B625352C7CDBFE00F6488C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		B0B6253A2C7DD74D00F6488C /* CallableApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallableApi.swift; sourceTree = "<group>"; };
 		B0E303EB2C733E2900E0877C /* sports-bets-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sports-bets-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sports_bets_iosApp.swift; sourceTree = "<group>"; };
 		B0E303F02C733E2900E0877C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -176,8 +178,9 @@
 		B0B625392C7DCBB400F6488C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				B0E304292C73997000E0877C /* WebApi.swift */,
 				B0E3042F2C74C6C700E0877C /* ApiState.swift */,
+				B0B6253A2C7DD74D00F6488C /* CallableApi.swift */,
+				B0E304292C73997000E0877C /* WebApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 			files = (
 				B0E304282C73932B00E0877C /* StringExtensions.swift in Sources */,
 				B0E303F12C733E2900E0877C /* ContentView.swift in Sources */,
+				B0B6253B2C7DD74D00F6488C /* CallableApi.swift in Sources */,
 				B0E3042E2C74C2A600E0877C /* MatchesListView.swift in Sources */,
 				B0AD17202C78E431006A1AB8 /* BackendApiUser.swift in Sources */,
 				B0E3042C2C748BD400E0877C /* CompetitionsMenuView.swift in Sources */,

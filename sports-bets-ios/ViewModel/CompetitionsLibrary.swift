@@ -13,21 +13,22 @@ class CompetitionsLibrary : ObservableObject {
     @Published private(set) var competitions : [CompetitionModel] = []
     @Published private(set) var apiState = ApiState.notInitialized
     
+    @MainActor 
     func fetchCompetitions() async {
+        apiState = .fetching
         do {
-            apiState = .fetching
-            let data = try await WebApi.fetchData(for: ModelRemoteApi.GetAll())
-            competitions = try initCompetitions(from: data)
+            let response = try await ModelRemoteApi.GetAll().call()
+            competitions = try initCompetitions(from: response)
             apiState = .loaded
         } catch {
             apiState = .failed(error.localizedDescription)
         }
+        
     }
     
     
-    private func initCompetitions(from data: Data) throws -> [CompetitionModel] {
-        let remoteDTOs = try ModelRemoteApi.GetAll.decodeResponse(data)
-        return remoteDTOs.map{ CompetitionModel(remoteData: $0) }
+    private func initCompetitions(from dtoList: [ModelRemoteApi.GetAll.DTO]) throws -> [CompetitionModel] {
+        return dtoList.map{ CompetitionModel(remoteData: $0) }
     }
     
 }

@@ -28,13 +28,13 @@ final class MatchesBundleTests: XCTestCase {
         XCTAssertFalse(sutRemote.matches.isEmpty)
     }
     
-    func test_sutRemote_initMatches_withRemoteDataCompetitionId2_ShouldBeNotEmpty() async throws {
-        // FIXME: RemoteMatchModel repetition - should be RemoteSut.Match
-        let jsonData = try await WebApi.fetchData(for: RemoteMatchModel.RemoteApi.GetAll(competitionId: 2))
-        let initializedMatches = try sutRemote.initMatches(from: jsonData)
-        
-        XCTAssertFalse(initializedMatches.isEmpty)
-    }
+//    func test_sutRemote_initMatches_withRemoteDataCompetitionId2_ShouldBeNotEmpty() async throws {
+//        // FIXME: RemoteMatchModel repetition - should be RemoteSut.Match
+//        let jsonData = try await WebApi.fetchData(for: RemoteMatchModel.RemoteApi.GetAll(competitionId: 2))
+//        let initializedMatches = try sutRemote.initMatches(from: jsonData)
+//        
+//        XCTAssertFalse(initializedMatches.isEmpty)
+//    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

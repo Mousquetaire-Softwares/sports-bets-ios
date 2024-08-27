@@ -9,33 +9,31 @@ import SwiftUI
 
 struct MatchesListView<Match : MatchModel>: View {
     @ObservedObject var matchesBundle : MatchesBundle<Match>
+    @State var competitionId : Int
     
     var body: some View {
         ZStack {
-            if !matchesBundle.matches.isEmpty {
-                matchesScrollableList
-            } else {
-                if matchesBundle.apiState.isFetching && matchesBundle.matches.isEmpty {
-                    ProgressView(label: { Text("fetching...")})
-                } else if let message = matchesBundle.apiState.failureMessage {
-                    Text(message)
-                } else if case .loaded = matchesBundle.apiState, matchesBundle.matches.isEmpty {
-                    VStack {
-                        Text("No matches are scheduled here")
-                        Image("background-matchesListEmpty-1")
-                            .resizable()
-                            .scaledToFit()
-                            .ignoresSafeArea()
-//                            .transition(.opacity)
-                            .animation(.easeInOut(duration: 3), value: matchesBundle.apiState)
-                    }
-                        
-                        
-                }
-            }
+            matchesScrollableList
             
-            if let message = matchesBundle.apiState.failureMessage {
-                Text(message)
+            matchesFetchingApiStatus
+
+        }
+    }
+    
+    @ViewBuilder
+    var matchesFetchingApiStatus : some View {
+        if matchesBundle.apiState.isLoading && matchesBundle.matches.isEmpty {
+            ProgressView(label: { Text("fetching...")})
+        } else if let message = matchesBundle.apiState.failureMessage {
+            Text(message)
+        } else if case .loaded = matchesBundle.apiState, matchesBundle.matches.isEmpty {
+            VStack {
+                Text("No matches are scheduled here")
+                Image("background-matchesListEmpty-1")
+                    .resizable()
+                    .scaledToFit()
+                    .ignoresSafeArea()
+                    .animation(.easeInOut(duration: 3), value: matchesBundle.apiState)
             }
         }
     }
@@ -53,16 +51,24 @@ struct MatchesListView<Match : MatchModel>: View {
             
         }
         .refreshable {
-            Task{
-                //                await matchesBundle.fetchMatches(of: 3)
+            await fetchMatches()
+        }
+        .onAppear {
+            if matchesBundle.matches.isEmpty {
+                Task{ await fetchMatches() }
             }
         }
     }
     
+    private func fetchMatches() async {
+        // FIXME: Probably not the right way to do it ...
+        if let matchesBundle = matchesBundle as? RefreshableMatchesBundle {
+            await matchesBundle.fetchMatches(of: competitionId)
+        }
+    }
 }
 
 #Preview {
     let bundle = MatchesBundle<RemoteMatchModel>()
-    Task { await bundle.fetchMatches(of:2) }
-    return MatchesListView(matchesBundle: bundle)
+    return MatchesListView(matchesBundle: bundle, competitionId: 2)
 }

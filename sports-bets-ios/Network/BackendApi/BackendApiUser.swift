@@ -11,7 +11,7 @@ extension BackendApi {
     enum User : WebApiNode {
         static let baseUrl = BackendApi.baseUrl.appending(path: "user")
         
-        struct Login : WebApiEndpoint {
+        struct Login : WebApiEndpoint, CallableApi {
             typealias ResponseDTO = DTO
             
             init(userEmail: String, userPassword: String) {

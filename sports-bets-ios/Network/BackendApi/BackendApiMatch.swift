@@ -11,7 +11,7 @@ extension BackendApi {
     struct Match : WebApiNode {
         static let baseUrl = BackendApi.baseUrl.appending(path: "matches")
         
-        struct GetAll : WebApiEndpoint {
+        struct GetAll : WebApiEndpoint, CallableApi {
             typealias ResponseDTO = [DTO]
             
             let competitionId: Int

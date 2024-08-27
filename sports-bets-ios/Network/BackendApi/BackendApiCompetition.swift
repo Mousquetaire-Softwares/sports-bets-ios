@@ -11,7 +11,7 @@ extension BackendApi {
     enum Competition : WebApiNode {
         static let baseUrl = BackendApi.baseUrl.appending(path: "competition")
         
-        struct GetAll : WebApiEndpoint {
+        struct GetAll : WebApiEndpoint, CallableApi {
             typealias ResponseDTO = [DTO]
             
             let baseUrl: URL = Competition.baseUrl
