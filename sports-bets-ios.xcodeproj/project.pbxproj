@@ -164,6 +164,24 @@
 			path = Screen;
 			sourceTree = "<group>";
 		};
+		B0B625382C7DCBA200F6488C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B0B625392C7DCBB400F6488C /* Network */,
+				B0E304262C7392F900E0877C /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B0B625392C7DCBB400F6488C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B0E304292C73997000E0877C /* WebApi.swift */,
+				B0E3042F2C74C6C700E0877C /* ApiState.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		B0E303E22C733E2900E0877C = {
 			isa = PBXGroup;
 			children = (
@@ -188,8 +206,8 @@
 		B0E303ED2C733E2900E0877C /* sports-bets-ios */ = {
 			isa = PBXGroup;
 			children = (
+				B0B625382C7DCBA200F6488C /* Common */,
 				B0B625332C7CDB9600F6488C /* SupportingFiles */,
-				B0E304262C7392F900E0877C /* Extensions */,
 				B0E304232C73720B00E0877C /* Network */,
 				B0E3041A2C733EA800E0877C /* Model */,
 				B0E3041B2C733EB200E0877C /* ViewModel */,
@@ -266,8 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				B0AD17172C78E303006A1AB8 /* BackendApi */,
-				B0E3042F2C74C6C700E0877C /* ApiState.swift */,
-				B0E304292C73997000E0877C /* WebApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
