@@ -17,7 +17,7 @@ extension BackendApi {
             let competitionId: Int
             let baseUrl: URL = Match.baseUrl
             var queryItems: [URLQueryItem]? { [URLQueryItem(name: "cmpEdt", value: "\(competitionId)")] }
-            let httpMethod : HTTPMethod = .GET
+            let httpMethod : WebApi.HTTPMethod = .GET
             
             static func decodeResponse(_ data: Data) throws -> ResponseDTO {
                 let jsonDecoder = JSONDecoder()

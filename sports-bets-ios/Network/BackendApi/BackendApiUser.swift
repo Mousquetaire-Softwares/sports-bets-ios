@@ -28,7 +28,7 @@ extension BackendApi {
             let baseUrl: URL = BackendApi.User.baseUrl.appending(path: "login")
             
             var queryItems: [URLQueryItem]?
-            var httpMethod : HTTPMethod
+            var httpMethod : WebApi.HTTPMethod
             
             
         }

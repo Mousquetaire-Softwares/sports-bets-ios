@@ -13,7 +13,7 @@ struct WebApiEndpointMock<DTO : Codable> : WebApiEndpoint {
     
     var queryItems: [URLQueryItem]?
     
-    var httpMethod: HTTPMethod
+    var httpMethod: WebApi.HTTPMethod
     
     typealias ResponseDTO = DTO
     

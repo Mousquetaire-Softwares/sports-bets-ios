@@ -30,7 +30,7 @@ final class WebApiTests: XCTestCase {
         ]
         let endpointMock = WebApiEndpointMock<DTOMock>(baseUrl: URL(string: testValues.url)!
                                                        , queryItems: queryItems
-                                                       , httpMethod: HTTPMethod.GET)
+                                                       , httpMethod: WebApi.HTTPMethod.GET)
         
         let sut = try WebApi.buildRequest(for: endpointMock)
         

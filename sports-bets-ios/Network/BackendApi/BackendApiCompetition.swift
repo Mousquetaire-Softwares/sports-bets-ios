@@ -16,7 +16,7 @@ extension BackendApi {
             
             let baseUrl: URL = Competition.baseUrl
             let queryItems: [URLQueryItem]? = nil
-            let httpMethod : HTTPMethod = .GET
+            let httpMethod : WebApi.HTTPMethod = .GET
         }
     }
 }
