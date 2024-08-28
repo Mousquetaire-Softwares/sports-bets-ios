@@ -101,8 +101,8 @@ struct WebApi {
     
     internal static func fetchData(from request: URLRequest) async throws -> Data {
         #if DEBUG
-        print("calling url : \(request.url.unwrappedDescriptionOrEmpty)")
-        sleep(2)
+//        print("calling url : \(request.url.unwrappedDescriptionOrEmpty)")
+        sleep(1)
         #endif
 
         let (data, response) = try await URLSession.shared.data(for: request)
