@@ -28,6 +28,20 @@
         }
       }
     },
+    "Application.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sport(s) bets ⚽️"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+
+    },
     "fetching..." : {
       "localizations" : {
         "en" : {
@@ -37,9 +51,6 @@
           }
         }
       }
-    },
-    "Item at %@" : {
-
     },
     "Login.EmailField.Title" : {
       "extractionState" : "manual",
@@ -52,13 +63,24 @@
         }
       }
     },
+    "Login.Failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The church has rejected this"
+          }
+        }
+      }
+    },
     "Login.LoginButton.Title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Send it to TheChurch"
+            "value" : "Send it to the church"
           }
         }
       }
@@ -69,7 +91,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Secret thing"
+            "value" : "Your little secret thing"
+          }
+        }
+      }
+    },
+    "Login.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in to heaven"
           }
         }
       }
@@ -101,7 +134,7 @@
     "score" : {
 
     },
-    "Select an item" : {
+    "Try!" : {
 
     }
   },

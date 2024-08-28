@@ -44,7 +44,7 @@ class UserLogin : ObservableObject {
             Task {
                 @MainActor in
                 apiState = .failed(error.localizedDescription)
-                loginResult = "The church have rejected this"
+                loginResult = "Login.Failed".localized
             }
         }
         

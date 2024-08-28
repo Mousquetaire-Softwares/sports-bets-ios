@@ -9,34 +9,41 @@ import SwiftUI
 
 struct UserLoginView: View {
     @ObservedObject var userLogin : UserLogin
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        VStack {
-            
-            Spacer()
-            
+        NavigationView {
             VStack {
+                Spacer()
                 
+                Text("Login.Title".localized)
+                    .font(.title)
                 email
                     .padding(.top, 20)
-                
                 Divider()
-                
                 password
                     .padding(.top, 20)
-                
                 Divider()
-                
+                Spacer()
                 progress
-                
-                Divider()
+                Spacer()
+                Spacer()
+                Spacer()
             }
-            
-            Spacer()
-            
-            actionLogin
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", role: .cancel) {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Try!", action: userLogin.login)
+                }
+            }
         }
-        .padding(30) //ScaledMetric(wrappedValue: 20, relativeTo: .title))
+        .padding(40) //ScaledMetric(wrappedValue: 20, relativeTo: .title))
+        
+        
     }
     
     var username : some View {

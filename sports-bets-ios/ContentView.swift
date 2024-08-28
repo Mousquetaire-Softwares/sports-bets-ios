@@ -19,16 +19,18 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: login) {
-                        Label("Login", systemImage: "person")
+                        Label("Generic.Login".localized, systemImage: "person")
                     }
                 }
             }
+            .navigationTitle("Application.Title".localized)
         } detail: {
-            Text("Select an item")
+            Text("Generic.SelectItem".localized)
         }
         .popover(isPresented: $loginSheetPresented) {
             UserLoginView(userLogin: UserLogin())
         }
+        .background()
     }
 
     private func login() {
