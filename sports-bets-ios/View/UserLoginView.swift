@@ -93,23 +93,6 @@ struct UserLoginView: View {
     var submitResult : some View {
         Text(userLogin.loginResult.description)
     }
-    
-    @ViewBuilder
-    var actionLogin : some View {
-//        if case .failed(let message) = userLogin.apiState {
-//            Text(message)
-//        }
-        Button {
-            Task { await userLogin.submitEmailPasswordForLogin() }
-        } label: {
-            Text("Login.LoginButton.Title".localized)
-                .font(.system(size: 24, weight: .bold, design: .default))
-                .frame(maxWidth: .infinity, maxHeight: 60)
-                .foregroundColor(Color.white)
-                .background(Color.blue)
-                .cornerRadius(10)
-        }
-    }
 }
 
 #Preview {
