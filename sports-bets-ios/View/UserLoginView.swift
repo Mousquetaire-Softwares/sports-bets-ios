@@ -78,6 +78,8 @@ struct UserLoginView: View {
     var submit : some View {
         if userLogin.apiState.isFetching {
             ProgressView()
+        } else if case .success = userLogin.loginResult {
+            EmptyView()
         } else {
             Button {
                 Task { await userLogin.submitEmailPasswordForLogin() }
@@ -89,7 +91,7 @@ struct UserLoginView: View {
     
     @ViewBuilder
     var submitResult : some View {
-        Text(userLogin.loginResult.unwrappedDescriptionOrEmpty)
+        Text(userLogin.loginResult.description)
     }
     
     @ViewBuilder

@@ -107,6 +107,17 @@
         }
       }
     },
+    "Login.Success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yay !"
+          }
+        }
+      }
+    },
     "Login.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -143,9 +154,6 @@
 
     },
     "score" : {
-
-    },
-    "Try!" : {
 
     }
   },
