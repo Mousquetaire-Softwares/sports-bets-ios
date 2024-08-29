@@ -10,6 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var userLogged : UserLogged
     @Query private var items: [Item]
     @State private var loginSheetPresented = false
 
@@ -28,7 +29,7 @@ struct ContentView: View {
             Text("Generic.SelectItem".localized)
         }
         .popover(isPresented: $loginSheetPresented) {
-            UserLoginView(userLogin: UserLogin())
+            UserLoginView(userLogin: UserLogin(userLogged: userLogged))
         }
         .background()
     }
@@ -42,7 +43,9 @@ struct ContentView: View {
 
 #Preview {
     let lib = CompetitionsLibrary()
+    let userLogged = UserLogged()
     return ContentView()
         .modelContainer(for: Item.self, inMemory: true)
         .environmentObject(lib)
+        .environmentObject(userLogged)
 }

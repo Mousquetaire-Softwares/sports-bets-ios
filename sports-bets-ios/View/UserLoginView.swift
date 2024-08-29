@@ -101,7 +101,8 @@ struct UserLoginView: View {
 }
 
 #Preview {
-    UserLoginView(userLogin: UserLogin())
+    let userLogged = UserLogged()
+    return UserLoginView(userLogin: UserLogin(userLogged: userLogged))
 }
 
 extension String {

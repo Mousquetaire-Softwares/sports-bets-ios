@@ -8,6 +8,11 @@
 import Foundation
 
 class UserLogin : ObservableObject {
+    let userLogged : UserLogged
+
+    init(userLogged: UserLogged) {
+        self.userLogged = userLogged
+    }
     
     @Published var username : String = ""
     @Published var email : String = ""
