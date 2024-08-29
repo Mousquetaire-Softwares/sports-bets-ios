@@ -9,16 +9,30 @@ import Foundation
 
 class UserLogin : ObservableObject {
     typealias Api = BackendApi.User.Login
-    let userLogged : UserLogged
+    private(set) var userLogged : UserLogged?
 
-    init(userLogged: UserLogged) {
-        self.userLogged = userLogged
+    @Published var email : String = "" {
+        didSet {
+            print(oldValue)
+        }
     }
-    
-    @Published var email : String = ""
     @Published var password : String = ""
     @Published var apiState : ApiState = .notInitialized
     @Published var loginResult : LoginResult = .none
+    
+    var loginEnabled : Bool {
+        userLogged != nil 
+        && userLogged?.isSet == false
+        && apiState.isFetching == false
+    }
+    
+    func prepare(for userLogged:UserLogged) {
+        self.userLogged = userLogged
+        password = ""
+        email = "fraternite76-bartman@yahoo.fr"
+        apiState = .notInitialized
+        loginResult = .none
+    }
     
     enum LoginResult : CustomStringConvertible {
         
@@ -56,19 +70,19 @@ class UserLogin : ObservableObject {
     }
     @MainActor
     private func setSubmitSuccess(apiResponse:Api.ResponseDTO) {
-        userLogged.setUser(UserModel(from: apiResponse.user, token: apiResponse.token))
+        userLogged?.setUser(UserModel(from: apiResponse.user, token: apiResponse.token))
         loginResult = .success(welcomeMessage: "Login.Success".localized)
         apiState = .loaded
     }
     @MainActor
     private func setSubmitRejected() {
-        userLogged.setUser(nil)
+        userLogged?.setUser(nil)
         loginResult = .rejected(errorMessage: "Login.Failed".localized)
         apiState = .loaded
     }
     @MainActor
     private func setSubmitError(errorMessage:String) {
-        userLogged.setUser(nil)
+        userLogged?.setUser(nil)
         loginResult = .rejected(errorMessage: "Login.Failed".localized)
         apiState = .failed(errorMessage)
     }

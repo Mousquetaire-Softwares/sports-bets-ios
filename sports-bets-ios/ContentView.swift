@@ -12,31 +12,56 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var userLogged : UserLogged
     @Query private var items: [Item]
-    @State private var loginSheetPresented = false
+    @State private var userLoginIsPresented = false
+    @StateObject private var userLogin = UserLogin()
 
+//    init(userLogged : UserLogged) {
+//        self.userLogged = userLogged
+////        self.userLogin = UserLogin(userLogged: userLogged)
+//    }
+    
     var body: some View {
         NavigationSplitView {
             CompetitionsMenuView()
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: login) {
-                        Label("Generic.Login".localized, systemImage: userLogged.isSet ? "person.fill" : "person")
-                    }
+                    Text(userLogged.user?.firstName ?? .empty)
+                        .foregroundColor(Color.blue)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    user
                 }
             }
             .navigationTitle("Application.Title".localized)
         } detail: {
             Text("Generic.SelectItem".localized)
         }
-        .popover(isPresented: $loginSheetPresented) {
-            UserLoginView(userLogin: UserLogin(userLogged: userLogged))
+        .popover(isPresented: $userLoginIsPresented) {
+            UserLoginView(userLogin: userLogin)
+//            UserLoginView(userLogin: userLogin)
         }
         .background()
     }
 
-    private func login() {
+    @ViewBuilder
+    var user : some View {
+        if userLogged.isSet {
+            HStack {
+                Text(userLogged.user?.firstName ?? .empty)
+                Button(action: showUserLogin) {
+                    Label("Generic.Login".localized, systemImage: "person.fill")
+                }
+            }
+        } else {
+            Button(action: showUserLogin) {
+                Label("Generic.Login".localized, systemImage: "person")
+            }
+        }
+    }
+    private func showUserLogin() {
         withAnimation {
-            loginSheetPresented = true
+            userLogin.prepare(for: userLogged)
+            userLoginIsPresented = true
         }
     }
 }

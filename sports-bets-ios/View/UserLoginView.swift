@@ -9,9 +9,11 @@ import SwiftUI
 
 struct UserLoginView: View {
     @ObservedObject var userLogin : UserLogin
+//    @ObservedObject var userLogged : UserLogged
     @Environment(\.dismiss) private var dismiss
+    
     private var actionDisabled : Bool {
-        userLogin.userLogged.user != nil || userLogin.apiState.isFetching
+        !userLogin.loginEnabled
     }
     
     var body: some View {
@@ -80,6 +82,9 @@ struct UserLoginView: View {
             ProgressView()
         } else if case .success = userLogin.loginResult {
             EmptyView()
+                .task {
+                    dismiss()
+                }
         } else {
             Button {
                 Task { await userLogin.submitEmailPasswordForLogin() }
@@ -97,7 +102,9 @@ struct UserLoginView: View {
 
 #Preview {
     let userLogged = UserLogged()
-    return UserLoginView(userLogin: UserLogin(userLogged: userLogged))
+    let userLogin = UserLogin()
+    userLogin.prepare(for: userLogged)
+    return UserLoginView(userLogin: userLogin)
 }
 
 extension String {
