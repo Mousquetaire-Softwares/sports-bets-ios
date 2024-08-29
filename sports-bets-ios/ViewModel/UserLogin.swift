@@ -43,41 +43,33 @@ class UserLogin : ObservableObject {
     private func callApiForLogin(email submitEmail:String, password submitPassword:String) async {
         do {
             let data = try await WebApi.fetchData(for: BackendApi.User.Login(userEmail: submitEmail, userPassword: submitPassword))
-            print("\(String(decoding: data, as: UTF8.self))")
             
             let apiResponse = try BackendApi.User.Login.decodeResponse(data)
             if apiResponse.success {
-                setSubmitSuccess(apiResponse: apiResponse)
+                await setSubmitSuccess(apiResponse: apiResponse)
             } else {
-                setSubmitRejected()
+                await setSubmitRejected()
             }
         } catch {
-            setSubmitError(errorMessage: error.localizedDescription)
+            await setSubmitError(errorMessage: error.localizedDescription)
         }
     }
-    
+    @MainActor
     private func setSubmitSuccess(apiResponse:Api.ResponseDTO) {
-        Task {
-            @MainActor in
-            userLogged.setUser(UserModel(from: apiResponse.user, token: apiResponse.token))
-            loginResult = .success(welcomeMessage: "Login.Success".localized)
-            apiState = .loaded
-        }
+        userLogged.setUser(UserModel(from: apiResponse.user, token: apiResponse.token))
+        loginResult = .success(welcomeMessage: "Login.Success".localized)
+        apiState = .loaded
     }
+    @MainActor
     private func setSubmitRejected() {
-        Task {
-            @MainActor in
-            userLogged.setUser(nil)
-            loginResult = .rejected(errorMessage: "Login.Failed".localized)
-            apiState = .loaded
-        }
-    }    
+        userLogged.setUser(nil)
+        loginResult = .rejected(errorMessage: "Login.Failed".localized)
+        apiState = .loaded
+    }
+    @MainActor
     private func setSubmitError(errorMessage:String) {
-        Task {
-            @MainActor in
-            userLogged.setUser(nil)
-            loginResult = .rejected(errorMessage: "Login.Failed".localized)
-            apiState = .failed(errorMessage)
-        }
+        userLogged.setUser(nil)
+        loginResult = .rejected(errorMessage: "Login.Failed".localized)
+        apiState = .failed(errorMessage)
     }
 }
