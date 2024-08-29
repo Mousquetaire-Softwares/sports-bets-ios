@@ -20,7 +20,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: login) {
-                        Label("Generic.Login".localized, systemImage: "person")
+                        Label("Generic.Login".localized, systemImage: userLogged.isSet ? "person.fill" : "person")
                     }
                 }
             }
