@@ -14,7 +14,6 @@ class UserLogin : ObservableObject {
         self.userLogged = userLogged
     }
     
-    @Published var username : String = ""
     @Published var email : String = ""
     @Published var password : String = ""
     
@@ -22,16 +21,17 @@ class UserLogin : ObservableObject {
     
     @Published var apiState : ApiState = .notInitialized
     
-    func login() {
+    @MainActor
+    func submitEmailPasswordForLogin() async {
         apiState = .fetching
         loginResult = nil
         Task {
-            await callApiForLogin()
+            await callApiForLogin(email: email, password: password)
         }
     }
-    private func callApiForLogin() async {
+    private func callApiForLogin(email submitEmail:String, password submitPassword:String) async {
         do {
-            let data = try await WebApi.fetchData(for: BackendApi.User.Login(userEmail: email, userPassword: password))
+            let data = try await WebApi.fetchData(for: BackendApi.User.Login(userEmail: submitEmail, userPassword: submitPassword))
             print("\(String(decoding: data, as: UTF8.self))")
             
             let loginResponse = try BackendApi.User.Login.decodeResponse(data)
@@ -39,7 +39,6 @@ class UserLogin : ObservableObject {
                 @MainActor in
                 if loginResponse.success {
                     loginResult = "YAY !"
-                    username = loginResponse.user.firstName
                 } else {
                     loginResult = "Baaaad password"
                 }
