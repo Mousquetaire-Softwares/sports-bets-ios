@@ -37,10 +37,10 @@ class UserLogin : ObservableObject {
     
     @MainActor
     func submitEmailPasswordForLogin() async {
+        apiState = .fetching
         await callApiForLogin(email: email, password: password)
     }
     private func callApiForLogin(email submitEmail:String, password submitPassword:String) async {
-        apiState = .fetching
         do {
             let data = try await WebApi.fetchData(for: BackendApi.User.Login(userEmail: submitEmail, userPassword: submitPassword))
             print("\(String(decoding: data, as: UTF8.self))")
