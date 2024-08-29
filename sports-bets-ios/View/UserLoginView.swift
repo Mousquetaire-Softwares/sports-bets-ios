@@ -10,26 +10,15 @@ import SwiftUI
 struct UserLoginView: View {
     @ObservedObject var userLogin : UserLogin
     @Environment(\.dismiss) private var dismiss
+    private var actionDisabled : Bool {
+        userLogin.userLogged.user != nil || userLogin.apiState.isFetching
+    }
     
     var body: some View {
         NavigationView {
-            VStack {
-                Spacer()
-                
-                Text("Login.Title".localized)
-                    .font(.title)
-                email
-                    .padding(.top, 20)
-                Divider()
-                password
-                    .padding(.top, 20)
-                Divider()
-                Spacer()
-                progress
-                Spacer()
-                Spacer()
-                Spacer()
-            }
+            loginInputForm
+            .foregroundColor(actionDisabled ? Color.gray : nil)
+            .disabled(actionDisabled)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .cancel) {
@@ -38,12 +27,33 @@ struct UserLoginView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button("Try!", action: userLogin.login)
+                        .disabled(actionDisabled)
                 }
             }
         }
         .padding(40) //ScaledMetric(wrappedValue: 20, relativeTo: .title))
         
         
+    }
+    
+    var loginInputForm : some View {
+        VStack {
+            Spacer()
+            
+            Text("Login.Title".localized)
+                .font(.title)
+            email
+                .padding(.top, 20)
+            Divider()
+            password
+                .padding(.top, 20)
+            Divider()
+            Spacer()
+            progress
+            Spacer()
+            Spacer()
+            Spacer()
+        }
     }
     
     var username : some View {
