@@ -9,7 +9,12 @@ import SwiftUI
 
 struct UserLoginView: View {
     @ObservedObject var userLogin : UserLogin
+//    @ObservedObject var userLogged : UserLogged
     @Environment(\.dismiss) private var dismiss
+    
+    private var actionDisabled : Bool {
+        !userLogin.loginEnabled
+    }
     
     var body: some View {
         NavigationView {
@@ -18,14 +23,12 @@ struct UserLoginView: View {
                 
                 Text("Login.Title".localized)
                     .font(.title)
-                email
-                    .padding(.top, 20)
-                Divider()
-                password
-                    .padding(.top, 20)
-                Divider()
+                loginInputForm
+                    .foregroundColor(actionDisabled ? Color.gray : nil)
+                    .disabled(actionDisabled)
+                
                 Spacer()
-                progress
+                submitResult
                 Spacer()
                 Spacer()
                 Spacer()
@@ -37,7 +40,8 @@ struct UserLoginView: View {
                     }
                 }
                 ToolbarItem(placement: .primaryAction) {
-                    Button("Try!", action: userLogin.login)
+                    submit
+                        .disabled(actionDisabled)
                 }
             }
         }
@@ -46,13 +50,14 @@ struct UserLoginView: View {
         
     }
     
-    var username : some View {
-        TextField(
-            "Login.UsernameField.Title".localized,
-            text: $userLogin.username
-        )
-        .autocapitalization(.none)
-        .disableAutocorrection(true)
+    @ViewBuilder
+    var loginInputForm : some View {
+        email
+            .padding(.top, 20)
+        Divider()
+        password
+            .padding(.top, 20)
+        Divider()
     }
     
     var email : some View {
@@ -71,36 +76,34 @@ struct UserLoginView: View {
         )
     }
     
-    @ViewBuilder
-    var progress : some View {
+    @ViewBuilder 
+    var submit : some View {
         if userLogin.apiState.isFetching {
             ProgressView()
+        } else if case .success = userLogin.loginResult {
+            EmptyView()
+                .task {
+                    dismiss()
+                }
         } else {
-            Text(userLogin.loginResult.unwrappedDescriptionOrEmpty)
+            Button {
+                Task { await userLogin.submitEmailPasswordForLogin() }
+            } label : {
+                Text("Login.Action.Submit".localized)
+            }
         }
-            
     }
     
     @ViewBuilder
-    var actionLogin : some View {
-//        if case .failed(let message) = userLogin.apiState {
-//            Text(message)
-//        }
-        Button(
-            action: userLogin.login,
-            label: {
-                Text("Login.LoginButton.Title".localized)
-                    .font(.system(size: 24, weight: .bold, design: .default))
-                    .frame(maxWidth: .infinity, maxHeight: 60)
-                    .foregroundColor(Color.white)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
-        )
+    var submitResult : some View {
+        Text(userLogin.loginResult.description)
     }
 }
 
 #Preview {
-    UserLoginView(userLogin: UserLogin())
+    let userLogged = UserLogged()
+    let userLogin = UserLogin()
+    userLogin.prepare(for: userLogged)
+    return UserLoginView(userLogin: userLogin)
 }
 

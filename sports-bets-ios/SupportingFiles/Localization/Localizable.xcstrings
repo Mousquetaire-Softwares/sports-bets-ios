@@ -52,6 +52,17 @@
         }
       }
     },
+    "Login.Action.Submit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try!"
+          }
+        }
+      }
+    },
     "Login.EmailField.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -96,6 +107,17 @@
         }
       }
     },
+    "Login.Success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yay !"
+          }
+        }
+      }
+    },
     "Login.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -132,9 +154,6 @@
 
     },
     "score" : {
-
-    },
-    "Try!" : {
 
     }
   },
