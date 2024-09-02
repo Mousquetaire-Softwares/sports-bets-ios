@@ -13,13 +13,14 @@ struct MatchView<Match : MatchModel>: View {
     var body: some View {
         matchResult(match)
             .background(Color.teal.opacity(0.2))
+            .background(.white)
             .cornerRadius(20) /// make the background rounded
             .overlay( /// apply a rounded border
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.teal.opacity(0.2), lineWidth: 2)
             )
-            
-            .padding()
+            .padding(30)
+            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     }
     
     @ViewBuilder
@@ -48,7 +49,9 @@ struct MatchView<Match : MatchModel>: View {
     @ViewBuilder
     private var header : some View {
         Text("Match.Title.Rank\(match.rankOrder).Date\(match.eventDate!.formatted(date: .numeric, time: .shortened))")
+            .lineLimit(1)
         Text("\(match.competitionPhaseDescription)")
+            .lineLimit(1)
         let competitionGroupLabel : String = {
             if let competitionGroup = match.competitionGroup {
                 return "Groupe \(competitionGroup), "
@@ -57,6 +60,7 @@ struct MatchView<Match : MatchModel>: View {
             }
         }()
         Text("\(competitionGroupLabel)Stade \(match.stadium)")
+            .lineLimit(1)
             .font(.footnote)
             .italic()
     }
@@ -120,7 +124,7 @@ struct Goals : ViewModifier {
                  index in
                  MatchView<RemoteMatchModel>(match: $matches[index])
              }
-             .padding(50)
+             .padding(30)
          }
     }
 
