@@ -29,21 +29,23 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le Pari Sportif"
+            "value" : "Le Pari Sportif ⚽️"
           }
         }
       }
     },
     "Cancel" : {
-
-    },
-    "fetching..." : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "fetching"
+            "value" : "Abort"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Annuler"
           }
         }
       }
@@ -56,6 +58,12 @@
             "state" : "translated",
             "value" : "fetching"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "transfert"
+          }
         }
       }
     },
@@ -65,7 +73,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Send"
+            "value" : "Submit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Valider"
           }
         }
       }
@@ -78,6 +92,12 @@
             "state" : "translated",
             "value" : "Email address"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresse mail"
+          }
         }
       }
     },
@@ -88,6 +108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Authentication failed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec de l'identification"
           }
         }
       }
@@ -100,6 +126,12 @@
             "state" : "translated",
             "value" : "Log out"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnexion"
+          }
         }
       }
     },
@@ -110,6 +142,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Password"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mot de passe"
           }
         }
       }
@@ -122,6 +160,12 @@
             "state" : "translated",
             "value" : "Welcome !"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenue !"
+          }
         }
       }
     },
@@ -132,6 +176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Log in"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion"
           }
         }
       }
@@ -144,16 +194,11 @@
             "state" : "translated",
             "value" : "Username"
           }
-        }
-      }
-    },
-    "Match n°%lld, le %@" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
+        },
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Match n°%1$lld, on %2$@"
+            "value" : "Pseudo"
           }
         }
       }
@@ -162,6 +207,12 @@
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        },
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Score"
@@ -177,6 +228,12 @@
             "state" : "translated",
             "value" : "Match n°%1$lld, on %2$@"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match n°%1$lld, le %2$@"
+          }
         }
       }
     },
@@ -187,6 +244,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No matches are scheduled here"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A priori rien n'est prévu ici"
           }
         }
       }
