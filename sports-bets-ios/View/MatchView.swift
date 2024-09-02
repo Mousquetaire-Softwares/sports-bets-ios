@@ -47,7 +47,7 @@ struct MatchView<Match : MatchModel>: View {
     
     @ViewBuilder
     private var header : some View {
-        Text("Match n°\(match.rankOrder), le \(match.eventDate!.formatted(date: .numeric, time: .shortened))")
+        Text("Match.Title.Rank\(match.rankOrder).Date\(match.eventDate!.formatted(date: .numeric, time: .shortened))")
         Text("\(match.competitionPhaseDescription)")
         let competitionGroupLabel : String = {
             if let competitionGroup = match.competitionGroup {
