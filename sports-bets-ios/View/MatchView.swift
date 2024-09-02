@@ -74,7 +74,7 @@ struct MatchView<Match : MatchModel>: View {
             }
             
             GridRow {
-                TextField("score", value: $match.localTeamScoreBet, formatter: NumberFormatter())
+                TextField("Match.Score".localized, value: $match.localTeamScoreBet, formatter: NumberFormatter())
                     .modifier(Goals())
                 
                 TextField("", value: $match.externalTeamScoreBet, formatter: NumberFormatter())

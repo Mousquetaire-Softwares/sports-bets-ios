@@ -17,17 +17,6 @@
         }
       }
     },
-    "API.Fetching" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "fetching"
-          }
-        }
-      }
-    },
     "Application.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -43,6 +32,18 @@
 
     },
     "fetching..." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fetching"
+          }
+        }
+      }
+    },
+    "Generic.FetchingData" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -58,7 +59,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Try!"
+            "value" : "Send"
           }
         }
       }
@@ -69,7 +70,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Amazing Email"
+            "value" : "Email address"
           }
         }
       }
@@ -80,18 +81,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The church has rejected this"
-          }
-        }
-      }
-    },
-    "Login.LoginButton.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send it to the church"
+            "value" : "Authentication failed"
           }
         }
       }
@@ -102,7 +92,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your little secret thing"
+            "value" : "Password"
           }
         }
       }
@@ -113,7 +103,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yay !"
+            "value" : "Welcome !"
           }
         }
       }
@@ -124,7 +114,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Log in to heaven"
+            "value" : "Log in"
           }
         }
       }
@@ -135,7 +125,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wonderful name"
+            "value" : "Username"
           }
         }
       }
@@ -144,17 +134,33 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Match n°%1$lld, le %2$@"
+            "state" : "translated",
+            "value" : "Match n°%1$lld, on %2$@"
           }
         }
       }
     },
-    "No matches are scheduled here" : {
-
+    "Match.Score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
+          }
+        }
+      }
     },
-    "score" : {
-
+    "MatchesList.NoMatch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No matches are scheduled here"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

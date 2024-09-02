@@ -23,12 +23,12 @@ struct MatchesListView<Match : MatchModel>: View {
     @ViewBuilder
     var matchesFetchingApiStatus : some View {
         if matchesBundle.apiState.isLoading && matchesBundle.matches.isEmpty {
-            ProgressView(label: { Text("fetching...")})
+            ProgressView(label: { Text("Generic.FetchingData".localized+"...")})
         } else if let message = matchesBundle.apiState.failureMessage {
             Text(message)
         } else if case .loaded = matchesBundle.apiState, matchesBundle.matches.isEmpty {
             VStack {
-                Text("No matches are scheduled here")
+                Text("MatchesList.NoMatch".localized)
                 Image("background-matchesListEmpty-1")
                     .resizable()
                     .scaledToFit()

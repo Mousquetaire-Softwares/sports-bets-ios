@@ -37,7 +37,7 @@ struct CompetitionsMenuView: View {
                 }
             }
             if competitionsLibrary.apiState.isFetching && competitionsLibrary.competitions.isEmpty {
-                ProgressView(label: { Text("API.Fetching".localized+"...")})
+                ProgressView(label: { Text("Generic.FetchingData".localized+"...")})
             }
             if let message = competitionsLibrary.apiState.failureMessage {
                 Text(message)
