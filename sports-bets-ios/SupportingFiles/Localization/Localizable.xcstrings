@@ -86,6 +86,17 @@
         }
       }
     },
+    "Login.Logout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log out"
+          }
+        }
+      }
+    },
     "Login.PasswordField.Title" : {
       "extractionState" : "manual",
       "localizations" : {

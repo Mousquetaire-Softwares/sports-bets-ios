@@ -48,7 +48,9 @@ struct ContentView: View {
         if userLogged.isSet {
             HStack {
                 Text(userLogged.user?.firstName ?? .empty)
-                Button(action: showUserLogin) {
+                Menu {
+                    Button("Login.Logout".localized, action: userLogout)
+                } label: {
                     Label("Generic.Login".localized, systemImage: "person.fill")
                 }
             }
@@ -62,6 +64,11 @@ struct ContentView: View {
         withAnimation {
             userLogin.prepare(for: userLogged)
             userLoginIsPresented = true
+        }
+    }
+    private func userLogout() {
+        withAnimation {
+            userLogged.setUser(nil)
         }
     }
 }
