@@ -21,7 +21,7 @@ struct UserLoginView: View {
             VStack {
                 Spacer()
                 
-                Text("Login.Title".localized)
+                Text("Login.Title")
                     .font(.title)
                 loginInputForm
                     .foregroundColor(actionDisabled ? Color.gray : nil)
@@ -62,7 +62,7 @@ struct UserLoginView: View {
     
     var email : some View {
         TextField(
-            "Login.EmailField.Title".localized,
+            "Login.EmailField.Title",
             text: $userLogin.email
         )
         .autocapitalization(.none)
@@ -71,7 +71,7 @@ struct UserLoginView: View {
     
     var password : some View {
         SecureField(
-            "Login.PasswordField.Title".localized,
+            "Login.PasswordField.Title",
             text: $userLogin.password
         )
     }
@@ -86,7 +86,7 @@ struct UserLoginView: View {
             Button {
                 Task { await userLogin.submitEmailPasswordForLogin() }
             } label : {
-                Text("Login.Action.Submit".localized)
+                Text("Login.Action.Submit")
             }
         }
     }

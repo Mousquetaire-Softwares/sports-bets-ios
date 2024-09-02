@@ -29,7 +29,7 @@ struct ContentView: View {
             }
             .navigationTitle("Application.Title")
         } detail: {
-            Text("Generic.SelectItem".localized)
+            Text("Generic.SelectItem")
         }
         .popover(isPresented: $userLogin.isPresented) {
             UserLoginView(userLogin: userLogin)
@@ -43,14 +43,14 @@ struct ContentView: View {
             HStack {
                 Text(userLogged.user?.firstName ?? .empty)
                 Menu {
-                    Button("Login.Logout".localized, action: userLogout)
+                    Button("Login.Logout", action: userLogout)
                 } label: {
-                    Label("Generic.Login".localized, systemImage: "person.fill")
+                    Label("Generic.Login", systemImage: "person.fill")
                 }
             }
         } else {
             Button(action: showUserLogin) {
-                Label("Generic.Login".localized, systemImage: "person")
+                Label("Generic.Login", systemImage: "person")
             }
         }
     }

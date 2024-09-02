@@ -59,7 +59,7 @@ struct MatchView<Match : MatchModel>: View {
                 return .empty
             }
         }()
-        Text("\(competitionGroupLabel)Stade \(match.stadium)")
+        Text("\(competitionGroupLabel)\(match.stadium)")
             .lineLimit(1)
             .font(.footnote)
             .italic()
@@ -78,7 +78,7 @@ struct MatchView<Match : MatchModel>: View {
             }
             
             GridRow {
-                TextField("Match.Score".localized, value: $match.localTeamScoreBet, formatter: NumberFormatter())
+                TextField("Match.Score", value: $match.localTeamScoreBet, formatter: NumberFormatter())
                     .modifier(Goals())
                 
                 TextField("", value: $match.externalTeamScoreBet, formatter: NumberFormatter())

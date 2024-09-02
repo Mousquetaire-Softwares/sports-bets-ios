@@ -56,16 +56,22 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "fetching"
+            "value" : "fetching data"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "transfert"
+            "state" : "needs_review",
+            "value" : "récupération des données"
           }
         }
       }
+    },
+    "Generic.Login" : {
+
+    },
+    "Generic.SelectItem" : {
+
     },
     "Login.Action.Submit" : {
       "extractionState" : "manual",

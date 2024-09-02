@@ -72,7 +72,7 @@ class UserLogin : ObservableObject {
     @MainActor
     private func setSubmitSuccess(apiResponse:Api.ResponseDTO) {
         userLogged?.setUser(UserModel(from: apiResponse.user, token: apiResponse.token))
-        loginResult = .success(welcomeMessage: "Login.Success".localized)
+        loginResult = .success(welcomeMessage: "Login.Success")
         apiState = .loaded
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + UIParameters.DimissDelayAfterLogin) {
@@ -83,13 +83,13 @@ class UserLogin : ObservableObject {
     @MainActor
     private func setSubmitRejected() {
         userLogged?.setUser(nil)
-        loginResult = .rejected(errorMessage: "Login.Failed".localized)
+        loginResult = .rejected(errorMessage: "Login.Failed")
         apiState = .loaded
     }
     @MainActor
     private func setSubmitError(errorMessage:String) {
         userLogged?.setUser(nil)
-        loginResult = .rejected(errorMessage: "Login.Failed".localized)
+        loginResult = .rejected(errorMessage: "Login.Failed")
         apiState = .failed(errorMessage)
     }
 }
