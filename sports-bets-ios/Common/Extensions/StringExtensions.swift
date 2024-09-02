@@ -6,11 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension String {
     static var empty = String("")
 }
 
+extension LocalizedStringKey {
+    static var empty = LocalizedStringKey(.empty)
+}
 
 extension String {
     var localized: String {
