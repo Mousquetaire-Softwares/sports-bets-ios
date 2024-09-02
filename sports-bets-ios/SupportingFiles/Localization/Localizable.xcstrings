@@ -4,15 +4,18 @@
     "" : {
 
     },
+    "-" : {
+
+    },
     "%@" : {
 
     },
-    "%@Stade %@" : {
+    "%@%@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@Stade %2$@"
+            "value" : "%1$@%2$@"
           }
         }
       }
