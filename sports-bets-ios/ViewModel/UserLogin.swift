@@ -19,6 +19,7 @@ class UserLogin : ObservableObject {
     @Published var password : String = ""
     @Published var apiState : ApiState = .notInitialized
     @Published var loginResult : LoginResult = .none
+    @Published var isPresented = false
     
     var loginEnabled : Bool {
         userLogged != nil 
@@ -73,6 +74,11 @@ class UserLogin : ObservableObject {
         userLogged?.setUser(UserModel(from: apiResponse.user, token: apiResponse.token))
         loginResult = .success(welcomeMessage: "Login.Success".localized)
         apiState = .loaded
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + UIParameters.DimissDelayAfterLogin) {
+            [weak self] in
+            self?.isPresented = false
+        }
     }
     @MainActor
     private func setSubmitRejected() {
@@ -85,5 +91,11 @@ class UserLogin : ObservableObject {
         userLogged?.setUser(nil)
         loginResult = .rejected(errorMessage: "Login.Failed".localized)
         apiState = .failed(errorMessage)
+    }
+}
+
+extension UserLogin {
+    struct UIParameters {
+        static let DimissDelayAfterLogin : TimeInterval = 1.5
     }
 }

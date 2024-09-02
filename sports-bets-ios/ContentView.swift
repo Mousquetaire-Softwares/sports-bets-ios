@@ -12,13 +12,8 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var userLogged : UserLogged
     @Query private var items: [Item]
-    @State private var userLoginIsPresented = false
     @StateObject private var userLogin = UserLogin()
 
-//    init(userLogged : UserLogged) {
-//        self.userLogged = userLogged
-////        self.userLogin = UserLogin(userLogged: userLogged)
-//    }
     
     var body: some View {
         NavigationSplitView {
@@ -36,9 +31,8 @@ struct ContentView: View {
         } detail: {
             Text("Generic.SelectItem".localized)
         }
-        .popover(isPresented: $userLoginIsPresented) {
+        .popover(isPresented: $userLogin.isPresented) {
             UserLoginView(userLogin: userLogin)
-//            UserLoginView(userLogin: userLogin)
         }
         .background()
     }
@@ -63,7 +57,7 @@ struct ContentView: View {
     private func showUserLogin() {
         withAnimation {
             userLogin.prepare(for: userLogged)
-            userLoginIsPresented = true
+            userLogin.isPresented = true
         }
     }
     private func userLogout() {

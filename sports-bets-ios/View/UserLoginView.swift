@@ -82,9 +82,6 @@ struct UserLoginView: View {
             ProgressView()
         } else if case .success = userLogin.loginResult {
             EmptyView()
-                .task {
-                    dismiss()
-                }
         } else {
             Button {
                 Task { await userLogin.submitEmailPasswordForLogin() }
