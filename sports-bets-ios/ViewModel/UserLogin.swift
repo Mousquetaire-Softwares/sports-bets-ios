@@ -29,7 +29,7 @@ class UserLogin : ObservableObject {
     func prepare(for userLogged:UserLogged) {
         self.userLogged = userLogged
         password = ""
-        email = "fraternite76-bartman@yahoo.fr"
+        email = ""
         apiState = .notInitialized
         loginResult = .none
     }
