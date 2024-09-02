@@ -23,6 +23,8 @@ protocol MatchModel : Identifiable {
     var localTeamScoreBet : Int? { get set }
     var externalTeamScoreBet : Int? { get set }
     var eventDate: Date? { get }
+    var scoreIsSet : Bool { get }
+    var scoreBetInputAllowed : Bool { get }
 }
 
 struct RemoteMatchModel : MatchModel {
@@ -56,4 +58,7 @@ struct RemoteMatchModel : MatchModel {
         let usefulDate = formatter.date(from: remoteData.DteHre)
         return usefulDate
     }
+    
+    var scoreIsSet : Bool { localTeamScore != nil && externalTeamScore != nil }
+    var scoreBetInputAllowed : Bool { !scoreIsSet }
 }
