@@ -27,7 +27,7 @@ struct ContentView: View {
                     user
                 }
             }
-            .navigationTitle("Application.Title".localized)
+            .navigationTitle("Application.Title")
         } detail: {
             Text("Generic.SelectItem".localized)
         }
@@ -70,8 +70,20 @@ struct ContentView: View {
 #Preview {
     let lib = CompetitionsLibrary()
     let userLogged = UserLogged()
-    return ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-        .environmentObject(lib)
-        .environmentObject(userLogged)
+    return
+        ContentView()
+            .modelContainer(for: Item.self, inMemory: true)
+            .environmentObject(userLogged)
+            .environmentObject(lib)
+}
+
+#Preview {
+    let lib = CompetitionsLibrary()
+    let userLogged = UserLogged()
+    return
+        ContentView()
+            .modelContainer(for: Item.self, inMemory: true)
+            .environmentObject(lib)
+            .environmentObject(userLogged)
+            .environment(\.locale, Locale(identifier: "fr-FR"))
 }

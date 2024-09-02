@@ -25,6 +25,12 @@
             "state" : "translated",
             "value" : "Sport(s) bets ⚽️"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Pari Sportif"
+          }
         }
       }
     },
