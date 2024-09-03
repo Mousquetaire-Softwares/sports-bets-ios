@@ -11,7 +11,8 @@ struct MatchView<Match : MatchModel>: View {
     @Binding var match : Match
     
     var body: some View {
-        matchResult(match)
+        content(of:match)
+            .padding()
             .background(MatchViews.UIParameters.PrimaryColor.opacity(0.2))
             .background(.white)
             .cornerRadius(20) /// make the background rounded
@@ -19,32 +20,29 @@ struct MatchView<Match : MatchModel>: View {
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(MatchViews.UIParameters.PrimaryColor.opacity(0.2), lineWidth: 2)
             )
-            .padding(30)
+            .padding(15)
             .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            .aspectRatio(1.4, contentMode: .fit)
     }
     
     @ViewBuilder
-    private func matchResult(_ match: Match) -> some View {
+    private func content(of match: Match) -> some View {
         VStack {
             
             HStack {
                 VStack(alignment: .center)
                 {
-                    Spacer()
                     header
                     Spacer()
                     HStack(alignment: .center) {
-                        VStack {
-                            Image(systemName: "star.fill")
-                            Text("\(match.localTeamName)")
-                                .multilineTextAlignment(.center)
-                        }
+                        team(name: match.localTeamName, image: UIImage(systemName: "star.fill"))
+                        .frame(maxWidth: .infinity)
+                        
                         resultWithBet
-                        VStack {
-                            Image(systemName: "star.fill")
-                            Text("\(match.externalTeamName)")
-                                .multilineTextAlignment(.center)
-                        }
+                            .frame(maxWidth: .infinity)
+                        
+                        team(name: match.externalTeamName, image: UIImage(systemName: "star.fill"))
+                        .frame(maxWidth: .infinity)
                     }
                     Spacer()
                 }
@@ -69,6 +67,19 @@ struct MatchView<Match : MatchModel>: View {
             .lineLimit(1)
             .font(.footnote)
             .italic()
+    }
+    
+    @ViewBuilder
+    private func team(name: String, image: UIImage?) -> some View {
+        VStack {
+            if let image {
+                Image(uiImage: image)
+                    .padding(.bottom, 3)
+            }
+            Text(name)
+                .multilineTextAlignment(.center)
+                .lineSpacing(3)
+        }
     }
     
     @ViewBuilder
@@ -110,9 +121,9 @@ struct MatchView<Match : MatchModel>: View {
                 
                 TextField("", value: $match.externalTeamScoreBet, format: .number)
                     .keyboardType(.decimalPad)
-                    .frame(maxHeight: .infinity)
                     .modifier(Goals(userInput: match.scoreBetInputAllowed
                                     , inputValidated: match.externalTeamScoreBet != nil))
+                    .aspectRatio(Goals.UIParameters.AspectRatio, contentMode: .fit)
             }
             .disabled(!match.scoreBetInputAllowed)
             .foregroundStyle(match.scoreBetInputAllowed ? .black : .gray)
@@ -134,7 +145,7 @@ struct Goals : ViewModifier {
     func body(content: Content) -> some View {
         content
             .lineLimit(1)
-            .aspectRatio(3, contentMode: .fit)
+            .multilineTextAlignment(.center)
             .background(userInput ? Color.white : Color.gray.opacity(0.2))
             .background(.white)
             .cornerRadius(5)
@@ -147,8 +158,15 @@ struct Goals : ViewModifier {
                         .stroke(Color.gray.opacity(0.2), lineWidth: 2)
                 }
             }
+            .aspectRatio(Goals.UIParameters.AspectRatio, contentMode: .fit)
     }
     
+}
+
+extension Goals {
+    struct UIParameters {
+        static let AspectRatio : CGFloat  = 0.9
+    }
 }
 
 
@@ -167,11 +185,12 @@ struct Goals : ViewModifier {
         }()
         
          var body: some View {
-             List(matches.indices, id:\.self) {
-                 index in
-                 MatchView<RemoteMatchModel>(match: $matches[index])
+             ScrollView {
+                 ForEach(matches.indices, id:\.self) {
+                     index in
+                     MatchView<RemoteMatchModel>(match: $matches[index])
+                 }
              }
-             .padding(30)
          }
     }
 
