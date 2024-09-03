@@ -36,13 +36,20 @@ struct MatchView<Match : MatchModel>: View {
                     Spacer()
                     HStack(alignment: .center) {
                         team(name: match.localTeamName, image: UIImage(systemName: "star.fill"))
-                        .frame(maxWidth: .infinity)
-                        
-                        resultWithBet
                             .frame(maxWidth: .infinity)
                         
+                        if match.scoreIsSet {
+                            matchScoreAndBetResult
+                                .frame(maxWidth: .infinity)
+                        } else if match.scoreBetInputAllowed {
+                            matchBetInput
+                                .frame(maxWidth: .infinity)
+                        } else {
+                            Text("-")
+                        }
+                        
                         team(name: match.externalTeamName, image: UIImage(systemName: "star.fill"))
-                        .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity)
                     }
                     Spacer()
                 }
@@ -83,81 +90,103 @@ struct MatchView<Match : MatchModel>: View {
     }
     
     @ViewBuilder
-    private var resultWithBet : some View {
+    private var matchScoreAndBetResult : some View {
         Grid {
-            scoreResultGridRow
-            scoreBetGridRow
-        }
-    }
-    
-    @ViewBuilder
-    private var scoreResultGridRow : some View {
-        if match.scoreIsSet {
-            GridRow {
-                Text(match.localTeamScore.unwrappedDescriptionOrEmpty)
-                    .frame(maxWidth: .infinity)
-                    .modifier(Goals())
-                    .font(.title)
-                
-                Text("-")
-                
-                Text(match.externalTeamScore.unwrappedDescriptionOrEmpty)
-                    .frame(maxWidth: .infinity)
-                    .modifier(Goals())
-                    .font(.title)
+            matchScoreResultGridRow
+            if match.userHasRegistered {
+                matchBetResultGridRow
             }
         }
     }
     
+    
     @ViewBuilder
-    private var scoreBetGridRow : some View {
-            GridRow {
-                TextField(.empty, value: $match.localTeamScoreBet, format: .number)
-                    .keyboardType(.decimalPad)
-                    .modifier(Goals(userInput: match.scoreBetInputAllowed
-                                    , inputValidated: match.localTeamScoreBet != nil))
-                
-                Text("-")
-                
-                TextField("", value: $match.externalTeamScoreBet, format: .number)
-                    .keyboardType(.decimalPad)
-                    .modifier(Goals(userInput: match.scoreBetInputAllowed
-                                    , inputValidated: match.externalTeamScoreBet != nil))
-                    .aspectRatio(Goals.UIParameters.AspectRatio, contentMode: .fit)
-            }
-            .disabled(!match.scoreBetInputAllowed)
-            .foregroundStyle(match.scoreBetInputAllowed ? .black : .gray)
+    private var matchBetInput : some View {
+        HStack {
+            goalsBet($match.localTeamScoreBet)
+            Text("-")
+            goalsBet($match.externalTeamScoreBet)
+        }
+        .disabled(!match.scoreBetInputAllowed)
+        .foregroundStyle(match.scoreBetInputAllowed ? .black : .gray)
+        .font(.title)
     }
+    
+    @ViewBuilder
+    private var matchScoreResultGridRow : some View {
+        GridRow {
+            goalsResult(match.localTeamScore)
+            
+            Text("-")
+            
+            goalsResult(match.externalTeamScore)
+        }
+        .font(.title)
+    }
+    
+    @ViewBuilder
+    private var matchBetResultGridRow : some View {
+        GridRow {
+            goalsResult(match.localTeamScoreBet)
+                .padding(.leading, 10)
+            Text("-")
+            goalsResult(match.externalTeamScoreBet)
+                .padding(.trailing, 10)
+        }
+        .foregroundColor(.gray)
+//        .font(.caption)
+    }
+    
+    @ViewBuilder
+    private func goalsResult(_ value:Int?) -> some View {
+        let presentedValue : String = {
+            if let value {
+                String("\(value)")
+            } else {
+                .empty
+            }
+        }()
+        Text(presentedValue)
+            .frame(maxWidth: .infinity)
+//            .modifier(Goals())
+//            .overlay {
+//                RoundedRectangle(cornerRadius: 5)
+//                    .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+//            }
+    }
+    
+    
+    @ViewBuilder
+    private func goalsBet(_ value:Binding<Int?>) -> some View {
+        TextField("", value: value, format: .number)
+            .keyboardType(.decimalPad)
+            .background((value.wrappedValue == nil ? Color.red : .green).opacity(Goals.UIParameters.BackgroundColorOpacity))
+            .background(Color.white)
+            .modifier(Goals())
+            .overlay {
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke((value.wrappedValue == nil ? Color.red : .green).opacity(Goals.UIParameters.BordersColorOpacity), lineWidth: 2)
+            }
+    }
+    
+    
 }
 
 struct MatchViews {
     struct UIParameters {
         static let PrimaryColor : Color = Color(cgColor: #colorLiteral(red: 0.1428019085, green: 0.5530697601, blue: 0.2490302315, alpha: 1))
+        
     }
 }
 
 
 
 struct Goals : ViewModifier {
-    var userInput = false
-    var inputValidated = false
-    
     func body(content: Content) -> some View {
         content
             .lineLimit(1)
             .multilineTextAlignment(.center)
-            .background(userInput ? Color.white : Color.gray.opacity(0.2))
-            .background(.white)
             .cornerRadius(5)
-            .overlay {
-                if userInput {
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(inputValidated ? Color.green.opacity(0.5) : Color.red.opacity(0.3), lineWidth: 2)
-                } else {
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 2)
-                }
-            }
             .aspectRatio(Goals.UIParameters.AspectRatio, contentMode: .fit)
     }
     
@@ -166,6 +195,9 @@ struct Goals : ViewModifier {
 extension Goals {
     struct UIParameters {
         static let AspectRatio : CGFloat  = 0.9
+        static let BackgroundColorOpacity : CGFloat = 0.05
+        static let BordersColorOpacity : CGFloat = 0.5
+        
     }
 }
 
@@ -196,7 +228,7 @@ extension Goals {
                 var match = matchesTemplates.first!
                 match.userHasRegistered = true
                 match.localTeamScoreBet = 2
-                match.externalTeamScoreBet = 99
+                match.externalTeamScoreBet = 0
                 return match
             }())
             matchesPreview.append( {
@@ -218,7 +250,7 @@ extension Goals {
                 var match = matchesTemplates.last!
                 match.userHasRegistered = true
                 match.localTeamScoreBet = 2
-                match.externalTeamScoreBet = 99
+                match.externalTeamScoreBet = 0
                 return match
             }())
             matchesPreview.append( {
