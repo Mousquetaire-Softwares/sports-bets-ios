@@ -35,6 +35,9 @@ struct RemoteMatchModel : MatchModel {
     
     init(remoteData: RemoteDTO) {
         self.remoteData = remoteData
+        self.localTeamScore = remoteData.Score_Dom
+        self.externalTeamScore = remoteData.Score_Ext
+        fillScoresBetsWithRandomValues()
     }
     private var remoteData : RemoteDTO
     
@@ -44,12 +47,13 @@ struct RemoteMatchModel : MatchModel {
     var city : String { remoteData.Ville_Nom }
     var localTeamId : Int { remoteData.team_idt_Dom }
     var localTeamName : String { remoteData.Nom_Dom }
-    var localTeamScore : Int? { remoteData.Score_Dom }
     var externalTeamId : Int { remoteData.team_idt_Ext }
     var externalTeamName : String { remoteData.Nom_Ext }
-    var externalTeamScore : Int? { remoteData.Score_Ext }
     var competitionGroup : String? { remoteData.Grp_Cod }
     var competitionPhaseDescription : String { remoteData.Journee_Lib }
+
+    var localTeamScore : Int?
+    var externalTeamScore : Int?
 
     var localTeamScoreBet : Int?
     var externalTeamScoreBet : Int?
@@ -61,8 +65,13 @@ struct RemoteMatchModel : MatchModel {
         return usefulDate
     }
     
-    var userHasRegistered = false
+    var userHasRegistered = true
     
     var scoreIsSet : Bool { localTeamScore != nil && externalTeamScore != nil }
     var scoreBetInputAllowed : Bool { !scoreIsSet && userHasRegistered }
+    
+    mutating func fillScoresBetsWithRandomValues() {
+        localTeamScoreBet = Int.random(in: 0...4)
+        externalTeamScoreBet = Int.random(in: 0...4)
+    }
 }
