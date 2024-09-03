@@ -59,6 +59,8 @@ struct RemoteMatchModel : MatchModel {
         return usefulDate
     }
     
+    var userHasRegistered = false
+    
     var scoreIsSet : Bool { localTeamScore != nil && externalTeamScore != nil }
-    var scoreBetInputAllowed : Bool { !scoreIsSet }
+    var scoreBetInputAllowed : Bool { !scoreIsSet && userHasRegistered }
 }
