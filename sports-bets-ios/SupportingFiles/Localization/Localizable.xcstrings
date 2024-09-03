@@ -212,6 +212,22 @@
         }
       }
     },
+    "Match.Played.Label" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "your bet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "joué"
+          }
+        }
+      }
+    },
     "Match.Score" : {
       "extractionState" : "manual",
       "localizations" : {

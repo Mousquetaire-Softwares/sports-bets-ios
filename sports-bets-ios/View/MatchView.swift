@@ -22,7 +22,7 @@ struct MatchView<Match : MatchModel>: View {
             )
             .padding(15)
             .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-            .aspectRatio(1.4, contentMode: .fit)
+            .aspectRatio(MatchViews.UIParameters.AspectRatio, contentMode: .fit)
     }
     
     @ViewBuilder
@@ -94,6 +94,7 @@ struct MatchView<Match : MatchModel>: View {
         Grid {
             matchScoreResultGridRow
             if match.userHasRegistered {
+                
                 matchBetResultGridRow
             }
         }
@@ -126,15 +127,23 @@ struct MatchView<Match : MatchModel>: View {
     
     @ViewBuilder
     private var matchBetResultGridRow : some View {
-        GridRow {
-            goalsResult(match.localTeamScoreBet)
-                .padding(.leading, 10)
-            Text("-")
-            goalsResult(match.externalTeamScoreBet)
-                .padding(.trailing, 10)
+        Group {
+            HStack {
+                Text("Match.Played.Label")
+                Text(":")
+            }
+            
+            GridRow {
+                goalsResult(match.localTeamScoreBet)
+                    .padding(.leading, 10)
+                Text("-")
+                goalsResult(match.externalTeamScoreBet)
+                    .padding(.trailing, 10)
+            }
         }
+        .font(.caption)
+        .italic()
         .foregroundColor(.gray)
-//        .font(.caption)
     }
     
     @ViewBuilder
@@ -175,6 +184,7 @@ struct MatchView<Match : MatchModel>: View {
 struct MatchViews {
     struct UIParameters {
         static let PrimaryColor : Color = Color(cgColor: #colorLiteral(red: 0.1428019085, green: 0.5530697601, blue: 0.2490302315, alpha: 1))
+        static let AspectRatio : CGFloat = 1.5
         
     }
 }
