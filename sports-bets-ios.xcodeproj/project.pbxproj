@@ -166,6 +166,9 @@
 		B0B625372C7D0E8B00F6488C /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				B0E3042B2C748BD400E0877C /* CompetitionsMenuView.swift */,
+				B0E3042D2C74C2A600E0877C /* MatchesListView.swift */,
+				B0B6252F2C7CD7F700F6488C /* UserLoginView.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -281,10 +284,7 @@
 		B0E3041C2C733EB800E0877C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0E3042B2C748BD400E0877C /* CompetitionsMenuView.swift */,
-				B0E3042D2C74C2A600E0877C /* MatchesListView.swift */,
 				B0E304372C761FF300E0877C /* MatchView.swift */,
-				B0B6252F2C7CD7F700F6488C /* UserLoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
