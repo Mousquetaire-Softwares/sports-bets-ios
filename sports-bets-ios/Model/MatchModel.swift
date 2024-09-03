@@ -23,6 +23,8 @@ protocol MatchModel : Identifiable {
     var localTeamScoreBet : Int? { get set }
     var externalTeamScoreBet : Int? { get set }
     var eventDate: Date? { get }
+    
+    var userHasRegistered : Bool { get }
     var scoreIsSet : Bool { get }
     var scoreBetInputAllowed : Bool { get }
 }
