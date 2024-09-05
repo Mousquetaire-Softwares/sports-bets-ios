@@ -26,6 +26,7 @@ struct UserParametersView: View {
             
             Section("UserParameters.TestingOnlySection") {
                 Toggle("UserParameters.GenerateFictiveRandomBets", isOn: $userParameters.fictiveBetsData)
+                Toggle("UserParameters.EmptyAllResultScores", isOn: $userParameters.allMatchesScoresAreNil)
             }
         }
         .navigationDestination(for: Navigation.self) {

@@ -372,18 +372,34 @@
         }
       }
     },
-    "UserParameters.GenerateFictiveRandomBets" : {
+    "UserParameters.EmptyAllResultScores" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Generate fictive random bets"
+            "value" : "Erase all results"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Simuler des valeurs de paris"
+            "value" : "Effacer tous les résultats"
+          }
+        }
+      }
+    },
+    "UserParameters.GenerateFictiveRandomBets" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate random bets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simuler des paris"
           }
         }
       }
