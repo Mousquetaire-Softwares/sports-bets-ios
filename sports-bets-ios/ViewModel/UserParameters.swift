@@ -8,15 +8,20 @@
 import Foundation
 
 class UserParameters : ObservableObject {
-    var backendApiUrl : URL { BackendApi.baseUrl }
     @Published var fictiveBetsData = true
     @Published var allMatchesScoresAreNil = false
+    private(set) var backendApiUrl : URL {
+        get { BackendApi.baseUrl }
+        set {
+            BackendApi.baseUrl = newValue
+            objectWillChange.send()
+        }
+    }
     
     
     func setBackendApiUrl(from urlString:String) throws {
         if urlString.isValidURL, let newUrl = URL(string: urlString) {
-            BackendApi.baseUrl = newUrl
-            objectWillChange.send()
+            backendApiUrl = newUrl
         } else {
             throw URLError(.badURL)
         }
