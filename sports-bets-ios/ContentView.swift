@@ -13,23 +13,35 @@ struct ContentView: View {
     @EnvironmentObject var userLogged : UserLogged
     @Query private var items: [Item]
     @StateObject private var userLogin = UserLogin()
-
+    @StateObject private var userParameters = UserParameters()
+    @State private var navigationPath = NavigationPath()
+    
+    enum Navigation {
+        case userParameters
+    }
     
     var body: some View {
-        NavigationSplitView {
+        NavigationStack(path: $navigationPath) {
             CompetitionsMenuView()
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem (placement: .topBarLeading) {
+                    settings
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Text(userLogged.user?.firstName ?? .empty)
                         .foregroundColor(Color.blue)
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     user
                 }
             }
+            .navigationDestination(for: Navigation.self) {
+                navigation in switch(navigation) {
+                case .userParameters: UserParametersView(userParameters: userParameters
+                                                         , navigationPath: $navigationPath)
+                }
+            }
             .navigationTitle("Application.Title")
-        } detail: {
-            Text("Generic.SelectItem")
         }
         .popover(isPresented: $userLogin.isPresented) {
             UserLoginView(userLogin: userLogin)
@@ -65,6 +77,16 @@ struct ContentView: View {
             userLogged.setUser(nil)
         }
     }
+    
+    @ViewBuilder
+    var settings : some View {
+        Button(action: {
+            navigationPath.append(Navigation.userParameters)
+        }) {
+            Label("UserParameters", systemImage: "gear")
+        }
+    }
+
 }
 
 #Preview {

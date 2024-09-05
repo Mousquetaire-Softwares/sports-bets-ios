@@ -28,6 +28,7 @@ struct UserParametersView: View {
                 Toggle("UserParameters.GenerateFictiveRandomBets", isOn: $userParameters.fictiveBetsData)
                 Toggle("UserParameters.EmptyAllResultScores", isOn: $userParameters.allMatchesScoresAreNil)
             }
+
         }
         .navigationDestination(for: Navigation.self) {
             navigation in switch(navigation) {
@@ -35,7 +36,7 @@ struct UserParametersView: View {
                                                                      , navigationPath: $navigationPath)
             }
         }
-        .padding()
+        .navigationTitle("UserParameters")
     }
 }
 
@@ -49,13 +50,13 @@ extension UserParametersView {
         @State var badUrlString = false
         @State var submitIsEnabled = false
         
+        @FocusState private var focusedTextField
         
         var body : some View {
-            VStack(alignment: .leading) {
-                Text("UserParameters.BackendApiUrl")
+            Form {
                 TextField("Generic.EnterValidURL", text: $urlString)
                     .onAppear { urlString = userParameters.backendApiUrl.absoluteString }
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(.plain)
                     .autocapitalization(.none)
                     .keyboardType(.URL)
                     .toolbar {
@@ -65,13 +66,15 @@ extension UserParametersView {
                         )
                     }
                     .onChange(of: urlString) { badUrlString = false }
-                if badUrlString {
-                    Text("Generic.BadValue")
-                        .foregroundStyle(.red)
-                }
-                Spacer()
+                    .onAppear{ focusedTextField = true }
+                    .focused ($focusedTextField)
             }
-            .padding()
+            .navigationTitle("UserParameters.BackendApiUrl")
+            if badUrlString {
+                Text("Generic.BadValue")
+                    .foregroundStyle(.red)
+                    .background(.clear)
+            }
             
         }
         

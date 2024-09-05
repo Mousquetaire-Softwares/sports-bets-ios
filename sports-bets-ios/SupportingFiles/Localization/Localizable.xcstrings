@@ -122,6 +122,7 @@
       }
     },
     "Generic.SelectItem" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -352,6 +353,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A priori rien n'est prévu ici"
+          }
+        }
+      }
+    },
+    "UserParameters" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parameters"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres"
           }
         }
       }
