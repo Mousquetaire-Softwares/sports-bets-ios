@@ -9,14 +9,11 @@ import SwiftUI
 
 struct UserParametersView: View {
     @ObservedObject var userParameters : UserParameters
-    @State var backendApiUrlString : String = .empty
-    @State var badBackendApiUrlString = false
     @Binding var navigationPath : NavigationPath
     
     enum Navigation : Hashable {
         case backendApiUrlEditor
     }
-    
     
     var body: some View {
         Form {
@@ -33,45 +30,58 @@ struct UserParametersView: View {
         }
         .navigationDestination(for: Navigation.self) {
             navigation in switch(navigation) {
-            case Navigation.backendApiUrlEditor: return backendApiUrlEditor
+            case Navigation.backendApiUrlEditor: BackendApiUrlEditor(userParameters: userParameters
+                                                                     , navigationPath: $navigationPath)
             }
         }
         .padding()
     }
-    
-    @ViewBuilder
-    private var backendApiUrlEditor : some View {
-        VStack(alignment: .leading) {
-            Text("UserParameters.BackendApiUrl")
-            TextField("Generic.EnterValidURL", text: $backendApiUrlString)
-                .onAppear { backendApiUrlString = userParameters.backendApiUrl.absoluteString }
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .autocapitalization(.none)
-                .keyboardType(.URL)
-                .toolbar {
-                    Button(role: .destructive
-                           , action: submitNewBackendApiUrlString
-                           , label: { Text("Generic.Submit") }
-                    )
-                }
-                .onChange(of: backendApiUrlString) { badBackendApiUrlString = false }
-            if badBackendApiUrlString {
-                Text("Generic.BadValue")
-                    .foregroundStyle(.red)
-            }
-            Spacer()
-        }
-        .padding()
+}
+
+
+extension UserParametersView {
+    struct BackendApiUrlEditor : View {
+        @ObservedObject var userParameters : UserParameters
+        @Binding var navigationPath : NavigationPath
         
-    }
-    
-    private func submitNewBackendApiUrlString() {
-        if let _ = try? userParameters.setBackendApiUrl(from: backendApiUrlString) {
-            if navigationPath.count > 0 {
-                navigationPath.removeLast()
+        @State var urlString : String = .empty
+        @State var badUrlString = false
+        @State var submitIsEnabled = false
+        
+        
+        var body : some View {
+            VStack(alignment: .leading) {
+                Text("UserParameters.BackendApiUrl")
+                TextField("Generic.EnterValidURL", text: $urlString)
+                    .onAppear { urlString = userParameters.backendApiUrl.absoluteString }
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
+                    .keyboardType(.URL)
+                    .toolbar {
+                        Button(role: .destructive
+                               , action: submitNewBackendApiUrlString
+                               , label: { Text("Generic.Submit") }
+                        )
+                    }
+                    .onChange(of: urlString) { badUrlString = false }
+                if badUrlString {
+                    Text("Generic.BadValue")
+                        .foregroundStyle(.red)
+                }
+                Spacer()
             }
-        } else {
-            badBackendApiUrlString = true
+            .padding()
+            
+        }
+        
+        private func submitNewBackendApiUrlString() {
+            if let _ = try? userParameters.setBackendApiUrl(from: urlString) {
+                if navigationPath.count > 0 {
+                    navigationPath.removeLast()
+                }
+            } else {
+                badUrlString = true
+            }
         }
     }
 }
