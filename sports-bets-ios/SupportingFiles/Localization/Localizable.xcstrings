@@ -7,6 +7,9 @@
     "-" : {
 
     },
+    ":" : {
+
+    },
     "%@" : {
 
     },
@@ -53,6 +56,38 @@
         }
       }
     },
+    "Generic.BadValue" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bad value"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valeur incorrecte"
+          }
+        }
+      }
+    },
+    "Generic.EnterValidURL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a valid URL"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saisir une URL valide"
+          }
+        }
+      }
+    },
     "Generic.FetchingData" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -71,10 +106,52 @@
       }
     },
     "Generic.Login" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion"
+          }
+        }
+      }
     },
     "Generic.SelectItem" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select an item"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner un élement"
+          }
+        }
+      }
+    },
+    "Generic.Submit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valider"
+          }
+        }
+      }
     },
     "Login.Action.Submit" : {
       "extractionState" : "manual",
@@ -275,6 +352,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A priori rien n'est prévu ici"
+          }
+        }
+      }
+    },
+    "UserParameters.BackendApiUrl" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backend API URL"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "URL de l'API Backend"
+          }
+        }
+      }
+    },
+    "UserParameters.GenerateFictiveRandomBets" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate fictive random bets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simuler des valeurs de paris"
+          }
+        }
+      }
+    },
+    "UserParameters.TestingOnlySection" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testing only features"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionnalités de tests"
           }
         }
       }

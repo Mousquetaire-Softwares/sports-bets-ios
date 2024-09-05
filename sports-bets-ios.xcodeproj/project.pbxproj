@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B02B42822C806F2E000548BE /* UserLogged.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02B42812C806F2E000548BE /* UserLogged.swift */; };
+		B02B42842C874BB7000548BE /* UserParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02B42832C874BB7000548BE /* UserParameters.swift */; };
+		B02B42862C874C55000548BE /* UserParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02B42852C874C55000548BE /* UserParametersView.swift */; };
 		B0AD171C2C78E3ED006A1AB8 /* BackendApiMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD171B2C78E3ED006A1AB8 /* BackendApiMatch.swift */; };
 		B0AD171E2C78E406006A1AB8 /* BackendApiCompetition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD171D2C78E406006A1AB8 /* BackendApiCompetition.swift */; };
 		B0AD17202C78E431006A1AB8 /* BackendApiUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD171F2C78E431006A1AB8 /* BackendApiUser.swift */; };
@@ -63,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		B02B42812C806F2E000548BE /* UserLogged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogged.swift; sourceTree = "<group>"; };
+		B02B42832C874BB7000548BE /* UserParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserParameters.swift; sourceTree = "<group>"; };
+		B02B42852C874C55000548BE /* UserParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserParametersView.swift; sourceTree = "<group>"; };
 		B0AD171B2C78E3ED006A1AB8 /* BackendApiMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiMatch.swift; sourceTree = "<group>"; };
 		B0AD171D2C78E406006A1AB8 /* BackendApiCompetition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiCompetition.swift; sourceTree = "<group>"; };
 		B0AD171F2C78E431006A1AB8 /* BackendApiUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiUser.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				B0E3042B2C748BD400E0877C /* CompetitionsMenuView.swift */,
 				B0E3042D2C74C2A600E0877C /* MatchesListView.swift */,
 				B0B6252F2C7CD7F700F6488C /* UserLoginView.swift */,
+				B02B42852C874C55000548BE /* UserParametersView.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				B0E304312C74D75200E0877C /* MatchesBundle.swift */,
 				B0B625312C7CD90400F6488C /* UserLogin.swift */,
 				B02B42812C806F2E000548BE /* UserLogged.swift */,
+				B02B42832C874BB7000548BE /* UserParameters.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -483,6 +489,8 @@
 				B0E303F32C733E2900E0877C /* Item.swift in Sources */,
 				B0E304222C736A1200E0877C /* CompetitionsLibrary.swift in Sources */,
 				B0E3042A2C73997000E0877C /* WebApi.swift in Sources */,
+				B02B42842C874BB7000548BE /* UserParameters.swift in Sources */,
+				B02B42862C874C55000548BE /* UserParametersView.swift in Sources */,
 				B0E303EF2C733E2900E0877C /* sports_bets_iosApp.swift in Sources */,
 				B02B42822C806F2E000548BE /* UserLogged.swift in Sources */,
 				B0AD171C2C78E3ED006A1AB8 /* BackendApiMatch.swift in Sources */,
