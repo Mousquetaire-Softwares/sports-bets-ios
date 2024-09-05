@@ -9,12 +9,12 @@ import Foundation
 
 extension BackendApi {
     enum Competition : WebApiNode {
-        static let baseUrl = BackendApi.baseUrl.appending(path: "competition")
+        static var baseUrl : URL { BackendApi.baseUrl.appending(path: "competition") }
         
         struct GetAll : WebApiEndpoint, CallableApi {
             typealias ResponseDTO = [DTO]
             
-            let baseUrl: URL = Competition.baseUrl
+            var baseUrl: URL { Competition.baseUrl }
             let queryItems: [URLQueryItem]? = nil
             let httpMethod : WebApi.HTTPMethod = .GET
         }

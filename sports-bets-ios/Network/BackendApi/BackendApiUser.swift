@@ -9,7 +9,7 @@ import Foundation
 
 extension BackendApi {
     enum User : WebApiNode {
-        static let baseUrl = BackendApi.baseUrl.appending(path: "user")
+        static var baseUrl : URL { BackendApi.baseUrl.appending(path: "user") }
         
         struct Login : WebApiEndpoint, CallableApi {
             typealias ResponseDTO = DTO
@@ -25,7 +25,7 @@ extension BackendApi {
             let userEmail: String
             let userPassword: String
             
-            let baseUrl: URL = BackendApi.User.baseUrl.appending(path: "login")
+            var baseUrl: URL { BackendApi.User.baseUrl.appending(path: "login") }
             
             var queryItems: [URLQueryItem]?
             var httpMethod : WebApi.HTTPMethod

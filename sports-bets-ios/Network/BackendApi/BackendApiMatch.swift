@@ -9,13 +9,13 @@ import Foundation
 
 extension BackendApi {
     struct Match : WebApiNode {
-        static let baseUrl = BackendApi.baseUrl.appending(path: "matches")
+        static var baseUrl : URL { BackendApi.baseUrl.appending(path: "matches") }
         
         struct GetAll : WebApiEndpoint, CallableApi {
             typealias ResponseDTO = [DTO]
             
             let competitionId: Int
-            let baseUrl: URL = Match.baseUrl
+            var baseUrl: URL { Match.baseUrl }
             var queryItems: [URLQueryItem]? { [URLQueryItem(name: "cmpEdt", value: "\(competitionId)")] }
             let httpMethod : WebApi.HTTPMethod = .GET
             
