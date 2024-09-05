@@ -69,6 +69,7 @@ struct MatchesListView<Match : MatchModel>: View {
 }
 
 #Preview {
-    let bundle = MatchesBundle<RemoteMatchModel>()
+    let userParameters = UserParameters()
+    let bundle = MatchesBundle<RemoteMatchModel>(userParameters: userParameters)
     return MatchesListView(matchesBundle: bundle, competitionId: 2)
 }

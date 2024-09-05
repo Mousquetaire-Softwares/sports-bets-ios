@@ -23,32 +23,33 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             CompetitionsMenuView()
-            .toolbar {
-                ToolbarItem (placement: .topBarLeading) {
-                    settings
+                .environmentObject(userParameters)
+                .toolbar {
+                    ToolbarItem (placement: .topBarLeading) {
+                        settings
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Text(userLogged.user?.firstName ?? .empty)
+                            .foregroundColor(Color.blue)
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        user
+                    }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Text(userLogged.user?.firstName ?? .empty)
-                        .foregroundColor(Color.blue)
+                .navigationDestination(for: Navigation.self) {
+                    navigation in switch(navigation) {
+                    case .userParameters: UserParametersView(userParameters: userParameters
+                                                             , navigationPath: $navigationPath)
+                    }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    user
-                }
-            }
-            .navigationDestination(for: Navigation.self) {
-                navigation in switch(navigation) {
-                case .userParameters: UserParametersView(userParameters: userParameters
-                                                         , navigationPath: $navigationPath)
-                }
-            }
-            .navigationTitle("Application.Title")
+                .navigationTitle("Application.Title")
         }
         .popover(isPresented: $userLogin.isPresented) {
             UserLoginView(userLogin: userLogin)
         }
         .background()
     }
-
+    
     @ViewBuilder
     var user : some View {
         if userLogged.isSet {
@@ -86,26 +87,26 @@ struct ContentView: View {
             Label("UserParameters", systemImage: "gear")
         }
     }
-
+    
 }
 
 #Preview {
     let lib = CompetitionsLibrary()
     let userLogged = UserLogged()
     return
-        ContentView()
-            .modelContainer(for: Item.self, inMemory: true)
-            .environmentObject(userLogged)
-            .environmentObject(lib)
+    ContentView()
+        .modelContainer(for: Item.self, inMemory: true)
+        .environmentObject(userLogged)
+        .environmentObject(lib)
 }
 
 #Preview {
     let lib = CompetitionsLibrary()
     let userLogged = UserLogged()
     return
-        ContentView()
-            .modelContainer(for: Item.self, inMemory: true)
-            .environmentObject(lib)
-            .environmentObject(userLogged)
-            .environment(\.locale, Locale(identifier: "fr-FR"))
+    ContentView()
+        .modelContainer(for: Item.self, inMemory: true)
+        .environmentObject(lib)
+        .environmentObject(userLogged)
+        .environment(\.locale, Locale(identifier: "fr-FR"))
 }

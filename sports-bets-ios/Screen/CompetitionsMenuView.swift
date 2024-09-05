@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CompetitionsMenuView: View {
     @EnvironmentObject var competitionsLibrary : CompetitionsLibrary
+    @EnvironmentObject var userParameters : UserParameters
     
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct CompetitionsMenuView: View {
             }
             .navigationDestination(for: CompetitionModel.ID.self) {
                 competitionId in
-                let matchesBundle = MatchesBundle<RemoteMatchModel>()
+                let matchesBundle = MatchesBundle<RemoteMatchModel>(userParameters: userParameters)
                 MatchesListView(matchesBundle: matchesBundle, competitionId: competitionId)
             }
             .refreshable {
@@ -48,7 +49,9 @@ struct CompetitionsMenuView: View {
 
 #Preview {
     let lib = CompetitionsLibrary()
+    let userParameters = UserParameters()
 //    Task { await lib.fetchCompetitions() }
     return CompetitionsMenuView()
         .environmentObject(lib)
+        .environmentObject(userParameters)
 }
