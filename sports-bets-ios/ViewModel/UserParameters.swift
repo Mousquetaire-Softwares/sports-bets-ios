@@ -8,17 +8,24 @@
 import Foundation
 
 class UserParameters : ObservableObject {
-    @Published private(set) var backendApiUrl = URL(string: "http://localhost:7700/api/v1")!
+    var backendApiUrl : URL { BackendApi.baseUrl }
     @Published var fictiveBetsData = true
     @Published var allMatchesScoresAreNil = false
     
     
     func setBackendApiUrl(from urlString:String) throws {
         if urlString.isValidURL, let newUrl = URL(string: urlString) {
-            backendApiUrl = newUrl
+            BackendApi.baseUrl = newUrl
+            objectWillChange.send()
         } else {
             throw URLError(.badURL)
         }
+    }
+}
+
+extension UserParameters {
+    struct DefaultValues {
+        static let backendApiUrl = URL(string: "http://localhost:7700/api/v1")!
     }
 }
 

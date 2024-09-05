@@ -9,9 +9,14 @@ import Foundation
 
 
 enum BackendApi : WebApiNode {
-    //    static let baseUrl = URL(string: "https://backend.yuumi-soft.fr/sports/api/v1")!
-        static let baseUrl = URL(string: "http://localhost:7700/api/v1")!
+    static var baseUrl = DefaultValues.baseUrl
 }
 
+extension BackendApi {
+    struct DefaultValues {
+        //    static let baseUrl = URL(string: "https://backend.yuumi-soft.fr/sports/api/v1")!
+        static let baseUrl = URL(string: "http://localhost:7700/api/v1")!
+    }
+}
 
 
