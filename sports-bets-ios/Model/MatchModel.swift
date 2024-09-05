@@ -37,7 +37,6 @@ struct RemoteMatchModel : MatchModel {
         self.remoteData = remoteData
         self.localTeamScore = remoteData.Score_Dom
         self.externalTeamScore = remoteData.Score_Ext
-        fillScoresBetsWithRandomValues()
     }
     private var remoteData : RemoteDTO
     
