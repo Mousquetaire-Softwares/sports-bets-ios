@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class UserLogin : ObservableObject {
     typealias Api = BackendApi.User.Login
@@ -35,13 +36,13 @@ class UserLogin : ObservableObject {
         loginResult = .none
     }
     
-    enum LoginResult : CustomStringConvertible {
+    enum LoginResult {
         
         case none
-        case success(welcomeMessage:String)
-        case rejected(errorMessage:String)
+        case success(welcomeMessage:LocalizedStringKey)
+        case rejected(errorMessage:LocalizedStringKey)
 
-        var description: String {
+        var description: LocalizedStringKey {
             switch(self) {
             case .none: return .empty
             case .rejected(let errorMessage): return errorMessage
@@ -71,8 +72,9 @@ class UserLogin : ObservableObject {
     }
     @MainActor
     private func setSubmitSuccess(apiResponse:Api.ResponseDTO) {
-        userLogged?.setUser(UserModel(from: apiResponse.user, token: apiResponse.token))
-        loginResult = .success(welcomeMessage: "Login.Success")
+        let newUserModel = UserModel(from: apiResponse.user, token: apiResponse.token)
+        userLogged?.setUser(newUserModel)
+        loginResult = .success(welcomeMessage: "Login.Success \(newUserModel.firstName) \(newUserModel.lastName)")
         apiState = .loaded
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + UIParameters.DimissDelayAfterLogin) {

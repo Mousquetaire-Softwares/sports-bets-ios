@@ -121,23 +121,6 @@
         }
       }
     },
-    "Generic.SelectItem" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select an item"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélectionner un élement"
-          }
-        }
-      }
-    },
     "Generic.Submit" : {
       "localizations" : {
         "en" : {
@@ -239,19 +222,18 @@
         }
       }
     },
-    "Login.Success" : {
-      "extractionState" : "manual",
+    "Login.Success %@ %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome !"
+            "value" : "Welcome %1$@ %2$@ !"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bienvenue !"
+            "value" : "Bienvenue %1$@ %2$@ !"
           }
         }
       }
