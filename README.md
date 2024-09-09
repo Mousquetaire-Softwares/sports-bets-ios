@@ -9,25 +9,16 @@
 All notable changes to this project will be documented in the [CHANGELOG.md](./CHANGELOG.md) file.
 
 ## Features
-- View a list of competitions
-- Place and manage bets
-- Track your betting history
+- View a list of competitions.
+- View a list of matches, place bets, and check results.
+- Login as a registered user and configure the app.
 
-## Screenshots (version 0.2.0)
+### Screenshots (version 0.2.0)
 
-### Competitions List
 ![Competitions List](./documentation/screenshots/CompetitionsList.PNG)
-
-### Matches List with Results
 ![Matches List with Results](./documentation/screenshots/MatchesListWithResults.gif)
-
-### Matches List with Bet Input
-![Matches List with Bet Input](./documentation/screenshots/MatchesListWithBetsInput.gif)
-
-### User Login Screen
 ![User Login Screen](./documentation/screenshots/UserLogin.PNG)
-
-### Parameters Screen
+![Matches List with Bet Input](./documentation/screenshots/MatchesListWithBetsInput.gif)
 ![Parameters Screen](./documentation/screenshots/Parameters.PNG)
 
 
