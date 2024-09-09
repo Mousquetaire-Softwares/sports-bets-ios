@@ -9,12 +9,35 @@
 All notable changes to this project will be documented in the [CHANGELOG.md](./CHANGELOG.md) file.
 
 ## Features
+- View a list of competitions
+- Place and manage bets
+- Track your betting history
 
-- **SwiftUI-based UI:** The app is built entirely using SwiftUI, Apple's modern UI framework for building declarative interfaces.
+## Screenshots (version 0.2.0)
+
+### Competitions List
+![Competitions List](./documentation/screenshots/CompetitionsList.PNG)
+
+### Matches List with Results
+![Matches List with Results](./documentation/screenshots/MatchesListWithResults.gif)
+
+### Matches List with Bet Input
+![Matches List with Bet Input](./documentation/screenshots/MatchesListWithBetsInput.gif)
+
+### User Login Screen
+![User Login Screen](./documentation/screenshots/UserLogin.PNG)
+
+### Parameters Screen
+![Parameters Screen](./documentation/screenshots/Parameters.PNG)
+
+
+## Technical concepts used and implemented
+
 - **Web API Integration:** Communicates with the [Sports Bets Backend](https://github.com/Yuumi-Software/sport-bets-backend) via RESTful APIs to retrieve and display sports competitions and betting data.
 - **MVVM Architecture:** Implements the Model-View-ViewModel (MVVM) pattern to separate concerns and improve testability.
 - **Asynchronous Data Handling:** Uses Combine for reactive programming and handling asynchronous data streams from the backend.
 - **JSON Decoding:** Decodes JSON responses into Swift model objects using `Codable`.
+- **SwiftUI-based UI:** The app is built entirely using SwiftUI.
 
 ## Getting Started
 
