@@ -5,6 +5,9 @@
 
 **Sports Bets iOS** is an open-source iOS application designed to interact with the [Sports Bets Backend](https://github.com/Yuumi-Software/sport-bets-backend). This project is primarily intended for learning and demonstrating SwiftUI development practices while building a functional sports betting app.
 
+## Changelog
+All notable changes to this project will be documented in the [CHANGELOG.md](./CHANGELOG.md) file.
+
 ## Features
 
 - **SwiftUI-based UI:** The app is built entirely using SwiftUI, Apple's modern UI framework for building declarative interfaces.
