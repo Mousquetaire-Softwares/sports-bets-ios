@@ -93,8 +93,7 @@ struct ContentView: View {
 #Preview {
     let lib = CompetitionsLibrary()
     let userLogged = UserLogged()
-    return
-    ContentView()
+    return ContentView()
         .modelContainer(for: Item.self, inMemory: true)
         .environmentObject(userLogged)
         .environmentObject(lib)
@@ -103,8 +102,7 @@ struct ContentView: View {
 #Preview {
     let lib = CompetitionsLibrary()
     let userLogged = UserLogged()
-    return
-    ContentView()
+    return ContentView()
         .modelContainer(for: Item.self, inMemory: true)
         .environmentObject(lib)
         .environmentObject(userLogged)
