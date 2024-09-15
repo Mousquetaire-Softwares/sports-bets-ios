@@ -35,7 +35,9 @@ struct MatchView<Match : MatchModel>: View {
                     header
                     Spacer()
                     HStack(alignment: .center) {
-                        team(name: match.localTeamName, image: UIImage(systemName: "star.fill"))
+                        team(name: match.localTeamName
+                             , flagImageName: "\(match.localTeamId)"
+                        )
                             .frame(maxWidth: .infinity)
                         
                         if match.scoreIsSet {
@@ -48,7 +50,9 @@ struct MatchView<Match : MatchModel>: View {
                             Text("-")
                         }
                         
-                        team(name: match.externalTeamName, image: UIImage(systemName: "star.fill"))
+                        team(name: match.externalTeamName
+                             , flagImageName: "\(match.externalTeamId)"
+                        )
                             .frame(maxWidth: .infinity)
                     }
                     Spacer()
@@ -77,15 +81,26 @@ struct MatchView<Match : MatchModel>: View {
     }
     
     @ViewBuilder
-    private func team(name: String, image: UIImage?) -> some View {
+    private func team(name: String, flagImageName: String?) -> some View {
         VStack {
-            if let image {
-                Image(uiImage: image)
-                    .padding(.bottom, 3)
-            }
+            flagImage(named: flagImageName)
+                .padding(.bottom, 3)
             Text(name)
                 .multilineTextAlignment(.center)
                 .lineSpacing(3)
+        }
+    }
+    
+    @ViewBuilder
+    private func flagImage(named flagImageName: String?) -> some View {
+        if let flagImageName, let uiImage = UIImage(named: flagImageName) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFit()
+                .padding()
+        } else {
+            Image(systemName: "star")
+                .imageScale(.large)
         }
     }
     
@@ -223,6 +238,32 @@ extension Goals {
             var matchesPreview = [RemoteMatchModel]()
             
             matchesPreview.append( {
+                var match = matchesTemplates.last!
+                match.userHasRegistered = true
+                
+                match.localTeamScore = nil
+                match.externalTeamScore = nil
+                
+                match.localTeamScoreBet = 2
+                match.externalTeamScoreBet = nil
+                return match
+            }())
+            matchesPreview.append( {
+                var match = matchesTemplates.last!
+                match.userHasRegistered = true
+                match.localTeamScoreBet = 2
+                match.externalTeamScoreBet = 0
+                return match
+            }())
+            matchesPreview.append( {
+                var match = matchesTemplates.last!
+                match.userHasRegistered = true
+                match.localTeamScoreBet = nil
+                match.externalTeamScoreBet = nil
+                return match
+            }())
+
+            matchesPreview.append( {
                 var match = matchesTemplates.first!
                 match.userHasRegistered = false
                 match.localTeamScoreBet = 9
@@ -244,31 +285,6 @@ extension Goals {
                 return match
             }())
                         
-            matchesPreview.append( {
-                var match = matchesTemplates.last!
-                match.userHasRegistered = true
-                
-                match.localTeamScore = nil
-                match.externalTeamScore = nil
-
-                match.localTeamScoreBet = 2
-                match.externalTeamScoreBet = nil
-                return match
-            }())
-            matchesPreview.append( {
-                var match = matchesTemplates.last!
-                match.userHasRegistered = true
-                match.localTeamScoreBet = 2
-                match.externalTeamScoreBet = 0
-                return match
-            }())
-            matchesPreview.append( {
-                var match = matchesTemplates.last!
-                match.userHasRegistered = true
-                match.localTeamScoreBet = nil
-                match.externalTeamScoreBet = nil
-                return match
-            }())
             
             return matchesPreview
         }()
