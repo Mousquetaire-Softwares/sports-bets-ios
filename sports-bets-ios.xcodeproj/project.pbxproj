@@ -23,6 +23,8 @@
 		B0B6253D2C7E5A4C00F6488C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B6253C2C7E5A4C00F6488C /* UserModel.swift */; };
 		B0DF49AD2C8F6FD900FAED08 /* TeamFlags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0DF49AC2C8F6FD900FAED08 /* TeamFlags.xcassets */; };
 		B0DF49AF2C9713DA00FAED08 /* ParametersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF49AE2C9713DA00FAED08 /* ParametersModel.swift */; };
+		B0DF49B12C986A4800FAED08 /* BackendApiCompetitionEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF49B02C986A4800FAED08 /* BackendApiCompetitionEdition.swift */; };
+		B0DF49B52C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF49B42C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift */; };
 		B0E303EF2C733E2900E0877C /* sports_bets_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */; };
 		B0E303F12C733E2900E0877C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F02C733E2900E0877C /* ContentView.swift */; };
 		B0E303F32C733E2900E0877C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F22C733E2900E0877C /* Item.swift */; };
@@ -83,6 +85,8 @@
 		B0B6253C2C7E5A4C00F6488C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B0DF49AC2C8F6FD900FAED08 /* TeamFlags.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TeamFlags.xcassets; sourceTree = "<group>"; };
 		B0DF49AE2C9713DA00FAED08 /* ParametersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersModel.swift; sourceTree = "<group>"; };
+		B0DF49B02C986A4800FAED08 /* BackendApiCompetitionEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiCompetitionEdition.swift; sourceTree = "<group>"; };
+		B0DF49B42C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiCompetitionEditionTests.swift; sourceTree = "<group>"; };
 		B0E303EB2C733E2900E0877C /* sports-bets-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sports-bets-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sports_bets_iosApp.swift; sourceTree = "<group>"; };
 		B0E303F02C733E2900E0877C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				B0E304242C73722100E0877C /* BackendApi.swift */,
 				B0AD171B2C78E3ED006A1AB8 /* BackendApiMatch.swift */,
 				B0AD171D2C78E406006A1AB8 /* BackendApiCompetition.swift */,
+				B0DF49B02C986A4800FAED08 /* BackendApiCompetitionEdition.swift */,
 				B0AD171F2C78E431006A1AB8 /* BackendApiUser.swift */,
 			);
 			path = BackendApi;
@@ -151,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				B0AD17222C78EAAC006A1AB8 /* BackendApiUserTests.swift */,
+				B0DF49B42C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift */,
 			);
 			path = BackendApi;
 			sourceTree = "<group>";
@@ -491,6 +497,7 @@
 				B0E304202C7367CA00E0877C /* CompetitionModel.swift in Sources */,
 				B0B625302C7CD7F700F6488C /* UserLoginView.swift in Sources */,
 				B0E304302C74C6C700E0877C /* ApiState.swift in Sources */,
+				B0DF49B12C986A4800FAED08 /* BackendApiCompetitionEdition.swift in Sources */,
 				B0DF49AF2C9713DA00FAED08 /* ParametersModel.swift in Sources */,
 				B0E3043A2C7640C300E0877C /* MatchModel.swift in Sources */,
 				B0E304322C74D75200E0877C /* MatchesBundle.swift in Sources */,
@@ -518,6 +525,7 @@
 				B0E3043F2C7797E000E0877C /* MatchesBundleTests.swift in Sources */,
 				B0E304022C733E2B00E0877C /* sports_bets_iosTests.swift in Sources */,
 				B0E304362C75EB0800E0877C /* MatchModelTests.swift in Sources */,
+				B0DF49B52C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
