@@ -19,14 +19,14 @@ struct UserParametersView: View {
         Form {
             Section("UserParameters.BackendApiUrl") {
                 NavigationLink (value: Navigation.backendApiUrlEditor) {
-                    Text(userParameters.backendApiUrl.absoluteString)
+                    Text(userParameters.parametersModel.backendApiUrl.absoluteString)
                         .lineLimit(1)
                 }
             }
             
             Section("UserParameters.TestingOnlySection") {
-                Toggle("UserParameters.GenerateFictiveRandomBets", isOn: $userParameters.fictiveBetsData)
-                Toggle("UserParameters.EmptyAllResultScores", isOn: $userParameters.allMatchesScoresAreNil)
+                Toggle("UserParameters.GenerateFictiveRandomBets", isOn: $userParameters.parametersModel.fictiveBetsData)
+                Toggle("UserParameters.EmptyAllResultScores", isOn: $userParameters.parametersModel.allMatchesScoresAreNil)
             }
 
         }
@@ -55,7 +55,7 @@ extension UserParametersView {
         var body : some View {
             Form {
                 TextField("Generic.EnterValidURL", text: $urlString)
-                    .onAppear { urlString = userParameters.backendApiUrl.absoluteString }
+                    .onAppear { urlString = userParameters.parametersModel.backendApiUrl.absoluteString }
                     .textFieldStyle(.plain)
                     .autocapitalization(.none)
                     .keyboardType(.URL)
@@ -79,7 +79,7 @@ extension UserParametersView {
         }
         
         private func submitNewBackendApiUrlString() {
-            if let _ = try? userParameters.setBackendApiUrl(from: urlString) {
+            if let _ = try? userParameters.parametersModel.setBackendApiUrl(from: urlString) {
                 if navigationPath.count > 0 {
                     navigationPath.removeLast()
                 }

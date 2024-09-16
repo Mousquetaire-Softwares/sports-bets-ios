@@ -15,7 +15,7 @@ enum BackendApi : WebApiNode {
 extension BackendApi {
     struct DefaultValues {
         static let baseUrl = URL(string: "https://backend.yuumi-soft.fr/sports/api/v1")!
-//        static let baseUrl = URL(string: "http://localhost:7700/api/v1")!
+//        static let baseUrl = URL(string: "http://10.0.0.6:7700/api/v1")!
     }
 }
 
