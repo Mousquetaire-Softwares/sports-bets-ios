@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MatchesListView<Match : MatchModel>: View {
     @ObservedObject var matchesBundle : MatchesBundle<Match>
-    @State var competitionId : Int
+    @State var competitionEditionId : CompetitionEditionModel.ID?
     
     var body: some View {
         ZStack {
@@ -62,14 +62,16 @@ struct MatchesListView<Match : MatchModel>: View {
     
     private func fetchMatches() async {
         // FIXME: Probably not the right way to do it ...
-        if let matchesBundle = matchesBundle as? RefreshableMatchesBundle {
-            await matchesBundle.fetchMatches(of: competitionId)
+        if let matchesBundle = matchesBundle as? RefreshableMatchesBundle, let competitionEditionId {
+            await matchesBundle.fetchMatches(of: competitionEditionId)
+        } else {
+            matchesBundle.setEmpty()
         }
     }
 }
 
 #Preview {
     let userParameters = UserParameters()
-    let bundle = MatchesBundle<RemoteMatchModel>(userParameters: userParameters)
-    return MatchesListView(matchesBundle: bundle, competitionId: 2)
+    let bundle = MatchesBundle<RemoteMatchModel>(with: userParameters)
+    return MatchesListView(matchesBundle: bundle, competitionEditionId: 4)
 }

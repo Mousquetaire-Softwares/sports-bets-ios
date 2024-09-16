@@ -10,7 +10,7 @@ import Foundation
 struct CompetitionModel : Identifiable {
     typealias RemoteApi = BackendApi.Competition
     typealias RemoteDTO = RemoteApi.GetAll.DTO
-    
+    typealias Code = String
     
     init(remoteData: RemoteDTO) {
         self.remoteData = remoteData
@@ -18,6 +18,6 @@ struct CompetitionModel : Identifiable {
     private var remoteData : RemoteDTO
     
     var id : Int { remoteData.idt }
-    var code : String { remoteData.cod }
+    var code : Code { remoteData.cod }
     var description : String { remoteData.lib }
 }

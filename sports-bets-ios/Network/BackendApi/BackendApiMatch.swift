@@ -14,9 +14,13 @@ extension BackendApi {
         struct GetAll : WebApiEndpoint, CallableApi {
             typealias ResponseDTO = [DTO]
             
-            let competitionId: Int
+            init(of competitionEditionId: String) {
+                self.competitionEditionId = competitionEditionId
+            }
+            
+            let competitionEditionId: String
             var baseUrl: URL { Match.baseUrl }
-            var queryItems: [URLQueryItem]? { [URLQueryItem(name: "cmpEdt", value: "\(competitionId)")] }
+            var queryItems: [URLQueryItem]? { [URLQueryItem(name: "cmpEdt", value: competitionEditionId)] }
             let httpMethod : WebApi.HTTPMethod = .GET
             
             static func decodeResponse(_ data: Data) throws -> ResponseDTO {

@@ -25,6 +25,7 @@
 		B0DF49AF2C9713DA00FAED08 /* ParametersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF49AE2C9713DA00FAED08 /* ParametersModel.swift */; };
 		B0DF49B12C986A4800FAED08 /* BackendApiCompetitionEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF49B02C986A4800FAED08 /* BackendApiCompetitionEdition.swift */; };
 		B0DF49B52C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF49B42C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift */; };
+		B0DF49B72C98B64200FAED08 /* CompetitionEditionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF49B62C98B64200FAED08 /* CompetitionEditionModel.swift */; };
 		B0E303EF2C733E2900E0877C /* sports_bets_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */; };
 		B0E303F12C733E2900E0877C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F02C733E2900E0877C /* ContentView.swift */; };
 		B0E303F32C733E2900E0877C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E303F22C733E2900E0877C /* Item.swift */; };
@@ -87,6 +88,7 @@
 		B0DF49AE2C9713DA00FAED08 /* ParametersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersModel.swift; sourceTree = "<group>"; };
 		B0DF49B02C986A4800FAED08 /* BackendApiCompetitionEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiCompetitionEdition.swift; sourceTree = "<group>"; };
 		B0DF49B42C98703B00FAED08 /* BackendApiCompetitionEditionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendApiCompetitionEditionTests.swift; sourceTree = "<group>"; };
+		B0DF49B62C98B64200FAED08 /* CompetitionEditionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionEditionModel.swift; sourceTree = "<group>"; };
 		B0E303EB2C733E2900E0877C /* sports-bets-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sports-bets-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E303EE2C733E2900E0877C /* sports_bets_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sports_bets_iosApp.swift; sourceTree = "<group>"; };
 		B0E303F02C733E2900E0877C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				B0E3041F2C7367CA00E0877C /* CompetitionModel.swift */,
+				B0DF49B62C98B64200FAED08 /* CompetitionEditionModel.swift */,
 				B0E304392C7640C300E0877C /* MatchModel.swift */,
 				B0B6253C2C7E5A4C00F6488C /* UserModel.swift */,
 				B0DF49AE2C9713DA00FAED08 /* ParametersModel.swift */,
@@ -508,6 +511,7 @@
 				B02B42862C874C55000548BE /* UserParametersView.swift in Sources */,
 				B0E303EF2C733E2900E0877C /* sports_bets_iosApp.swift in Sources */,
 				B02B42822C806F2E000548BE /* UserLogged.swift in Sources */,
+				B0DF49B72C98B64200FAED08 /* CompetitionEditionModel.swift in Sources */,
 				B0AD171C2C78E3ED006A1AB8 /* BackendApiMatch.swift in Sources */,
 				B0AD171E2C78E406006A1AB8 /* BackendApiCompetition.swift in Sources */,
 				B0E304252C73722100E0877C /* BackendApi.swift in Sources */,

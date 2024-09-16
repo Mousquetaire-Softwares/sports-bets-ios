@@ -13,24 +13,29 @@ class MatchesBundle<Match : MatchModel> : ObservableObject {
     
     let userParameters : UserParameters
     
-    init(userParameters: UserParameters) {
+    init(with userParameters: UserParameters) {
         self.userParameters = userParameters
+    }
+    
+    func setEmpty() {
+        matches = []
+        apiState = .loaded
     }
 }
 
 
 protocol RefreshableMatchesBundle {
-    func fetchMatches(of competitionEdition: Int) async
+    func fetchMatches(of competitionEditionId: CompetitionEditionModel.ID) async
 }
 
 extension MatchesBundle : RefreshableMatchesBundle where Match == RemoteMatchModel {
     typealias ModelRemoteApi = Match.RemoteApi
     
     @MainActor
-    func fetchMatches(of competitionEdition: Int) async {
+    func fetchMatches(of competitionEditionId: CompetitionEditionModel.ID) async {
 //        apiState = .fetching
         do {
-            let response = try await ModelRemoteApi.GetAll(competitionId: competitionEdition).call()
+            let response = try await ModelRemoteApi.GetAll(of: "\(competitionEditionId)").call()
             matches = try initMatches(from: response)
             apiState = .loaded
         } catch {

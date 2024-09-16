@@ -44,7 +44,7 @@ extension BackendApi.CompetitionEdition.GetAll {
         
         // DTO for the individual competition objects
         struct Competition: Codable {
-            let idt: String
+            let idt: Int
             let competition: String
             let edition: String
             let libelle: String

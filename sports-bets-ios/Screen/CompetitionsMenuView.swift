@@ -26,8 +26,11 @@ struct CompetitionsMenuView: View {
             }
             .navigationDestination(for: CompetitionModel.ID.self) {
                 competitionId in
-                let matchesBundle = MatchesBundle<RemoteMatchModel>(userParameters: userParameters)
-                MatchesListView(matchesBundle: matchesBundle, competitionId: competitionId)
+                
+                let matchesBundle = competitionsLibrary.getRemoteMatchBundle(with: userParameters)
+                let competitionEditionId = competitionsLibrary.firstCompetitionEditionId(of: competitionId)
+                
+                MatchesListView(matchesBundle: matchesBundle, competitionEditionId: competitionEditionId)
             }
             .refreshable {
                 await competitionsLibrary.fetchCompetitions()

@@ -17,13 +17,13 @@ final class BackendApiCompetitionEditionTests: XCTestCase {
     
     let jsonData2 = """
         {"Results":
-            [{"Idt": "3"
+            [{"Idt": 3
                 , "Competition": "UEFA-EURO"
                 , "Edition": "17ème édition"
                 , "Libelle": "Championnat d'Europe"
                 , "DateDebut": "2024-06-14"
                 , "DateFin": "2024-07-15"},
-            {"Idt": "4"
+            {"Idt": 4
                 , "Competition": "UEFACL"
                 , "Edition": "70ème édition"
                 , "Libelle": "UEFA Champion's League"

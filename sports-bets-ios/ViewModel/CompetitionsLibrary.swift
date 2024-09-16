@@ -8,17 +8,23 @@
 import Foundation
 
 class CompetitionsLibrary : ObservableObject {
-    typealias ModelRemoteApi = CompetitionModel.RemoteApi
+    typealias CompetitionRemoteApi = CompetitionModel.RemoteApi
+    typealias CompetitionEditionRemoteApi = CompetitionEditionModel.RemoteApi
     
     @Published private(set) var competitions : [CompetitionModel] = []
+    @Published private(set) var competitionsEditions : [CompetitionEditionModel] = []
     @Published private(set) var apiState = ApiState.notInitialized
     
     @MainActor 
     func fetchCompetitions() async {
         apiState = .fetching
         do {
-            let response = try await ModelRemoteApi.GetAll().call()
-            competitions = try initCompetitions(from: response)
+            let competitionResponse = try await CompetitionRemoteApi.GetAll().call()
+            competitions = try initCompetitions(from: competitionResponse)
+            
+            let competitionEditionResponse = try await CompetitionEditionRemoteApi.GetAll().call()
+            competitionsEditions = try initCompetitionsEditions(from: competitionEditionResponse)
+            
             apiState = .loaded
         } catch {
             apiState = .failed(error.localizedDescription)
@@ -26,9 +32,25 @@ class CompetitionsLibrary : ObservableObject {
         
     }
     
+    func getRemoteMatchBundle(with userParameters: UserParameters) -> MatchesBundle<RemoteMatchModel> {
+        MatchesBundle<RemoteMatchModel>(with: userParameters)
+    }
     
-    private func initCompetitions(from dtoList: [ModelRemoteApi.GetAll.DTO]) throws -> [CompetitionModel] {
+    func firstCompetitionEditionId(of competitionId: CompetitionModel.ID) -> CompetitionEditionModel.ID? {
+        if let competitionCode = competitions.first(where: { $0.id == competitionId })?.code
+            , let competitionEditionId = competitionsEditions.first(where: { $0.competitionCode == competitionCode })?.id
+        {
+            return competitionEditionId
+        } else {
+            return nil
+        }
+    }
+    
+    private func initCompetitions(from dtoList: [CompetitionRemoteApi.GetAll.DTO]) throws -> [CompetitionModel] {
         return dtoList.map{ CompetitionModel(remoteData: $0) }
+    }
+    private func initCompetitionsEditions(from dtoList: [CompetitionEditionModel.RemoteDTO]) throws -> [CompetitionEditionModel] {
+        return dtoList.map{ CompetitionEditionModel(remoteData: $0) }
     }
     
 }
