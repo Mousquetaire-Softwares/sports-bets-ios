@@ -29,6 +29,7 @@ extension BackendApi {
             
             var queryItems: [URLQueryItem]?
             var httpMethod : WebApi.HTTPMethod
+            var token: String? = nil
             
             
         }

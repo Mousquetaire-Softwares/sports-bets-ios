@@ -22,12 +22,31 @@ extension BackendApi {
             var baseUrl: URL { Match.baseUrl }
             var queryItems: [URLQueryItem]? { [URLQueryItem(name: "cmpEdt", value: competitionEditionId)] }
             let httpMethod : WebApi.HTTPMethod = .GET
+            var token: String? = nil
             
             static func decodeResponse(_ data: Data) throws -> ResponseDTO {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.dateDecodingStrategy = .iso8601
                 return try jsonDecoder.decode(ResponseDTO.self, from: data)
             }
+        }
+        
+        
+        struct PostUserBet : WebApiEndpoint, CallableApi {
+            
+            typealias ResponseDTO = [DTO]
+            
+            init(token:String, matchId: Int, teamId: Int, scoreBet: Int) {
+                self.token = token
+                let parameterDictionary = ["match": matchId, "matchteam": teamId, "value": scoreBet]
+                httpMethod = .POST(parametersAsJsonObject: parameterDictionary)
+            }
+            
+            var baseUrl: URL { Match.baseUrl }
+            var queryItems: [URLQueryItem]? = nil
+            let httpMethod : WebApi.HTTPMethod
+            var token: String?
+
         }
     }
 }
@@ -53,5 +72,10 @@ extension BackendApi.Match.GetAll {
         let Score_Ext : Int?
         let Grp_Cod : String?
         let Journee_Lib : String
+    }
+}
+extension BackendApi.Match.PostUserBet {
+    struct DTO : Codable {
+        
     }
 }

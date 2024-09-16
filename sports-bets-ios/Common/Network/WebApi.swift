@@ -20,6 +20,7 @@ protocol WebApiEndpoint {
     var baseUrl: URL { get }
     var queryItems: [URLQueryItem]? { get }
     var httpMethod : WebApi.HTTPMethod { get }
+    var token: String? { get }
     static func decodeResponse(_ data: Data) throws -> ResponseDTO
 }
 
@@ -95,6 +96,11 @@ struct WebApi {
         
         // Add any additional headers if needed
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        // if a token is provided in the Api EndPoint, we add it as a Bearer in http header
+        if let token = endpoint.token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         return request
     }

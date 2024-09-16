@@ -17,6 +17,7 @@ extension BackendApi {
             var baseUrl: URL { CompetitionEdition.baseUrl }
             let queryItems: [URLQueryItem]? = nil
             let httpMethod : WebApi.HTTPMethod = .GET
+            var token: String? = nil
             
             // specific function to decode this response because of the formatting
             static func decodeResponse(_ jsonData: Data) throws -> ResponseDTO {
