@@ -33,18 +33,7 @@ struct ContentView: View {
         NavigationStack(path: $navigationPath) {
             CompetitionsMenuView(competitionsLibrary: competitionsLibrary)
                 .environmentObject(userParameters)
-                .toolbar {
-                    ToolbarItem (placement: .topBarLeading) {
-                        settings
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Text(userLogged.user?.firstName ?? .empty)
-                            .foregroundColor(Color.blue)
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        user
-                    }
-                }
+                .toolbar(content: toolbarContent)
                 .navigationDestination(for: Navigation.self) {
                     navigation in switch(navigation) {
                     case .userParameters: UserParametersView(userParameters: userParameters
@@ -59,16 +48,27 @@ struct ContentView: View {
         .background()
     }
     
+    @ToolbarContentBuilder
+    func toolbarContent() -> some ToolbarContent {
+        ToolbarItem (placement: .topBarLeading) {
+            settings
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Text(userLogged.user?.username ?? .empty)
+                .foregroundColor(Color.blue)
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            userLoginMenu
+        }
+    }
+    
     @ViewBuilder
-    var user : some View {
+    var userLoginMenu : some View {
         if userLogged.isSet {
-            HStack {
-                Text(userLogged.user?.firstName ?? .empty)
-                Menu {
-                    Button("Login.Logout", action: userLogout)
-                } label: {
-                    Label("Generic.Login", systemImage: "person.fill")
-                }
+            Menu {
+                Button("Login.Logout", action: userLogout)
+            } label: {
+                Label("Generic.Login", systemImage: "person.fill")
             }
         } else {
             Button(action: showUserLogin) {
