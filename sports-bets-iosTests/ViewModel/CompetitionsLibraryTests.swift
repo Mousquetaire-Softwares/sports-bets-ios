@@ -10,15 +10,18 @@ import XCTest
 
 final class CompetitionsLibraryTests: XCTestCase {
     var sutRemote : CompetitionsLibrary!
+    var userLogged : UserLogged!
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        sutRemote = CompetitionsLibrary()
+        userLogged = UserLogged()
+        sutRemote = CompetitionsLibrary(for: userLogged)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         sutRemote = nil
+        userLogged = nil
     }
 
 

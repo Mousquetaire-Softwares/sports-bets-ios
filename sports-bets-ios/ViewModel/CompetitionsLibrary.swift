@@ -15,7 +15,13 @@ class CompetitionsLibrary : ObservableObject {
     @Published private(set) var competitionsEditions : [CompetitionEditionModel] = []
     @Published private(set) var apiState = ApiState.notInitialized
     
-    @MainActor 
+    private let userLogged : UserLogged
+    
+    internal init(for userLogged: UserLogged) {
+        self.userLogged = userLogged
+    }
+    
+    @MainActor
     func fetchCompetitions() async {
         apiState = .fetching
         do {
@@ -33,7 +39,7 @@ class CompetitionsLibrary : ObservableObject {
     }
     
     func getRemoteMatchBundle(with userParameters: UserParameters) -> MatchesBundle<RemoteMatchModel> {
-        MatchesBundle<RemoteMatchModel>(with: userParameters)
+        MatchesBundle<RemoteMatchModel>(with: userParameters, for: userLogged)
     }
     
     func firstCompetitionEditionId(of competitionId: CompetitionModel.ID) -> CompetitionEditionModel.ID? {

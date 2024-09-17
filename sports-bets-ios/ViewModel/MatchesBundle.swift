@@ -12,9 +12,11 @@ class MatchesBundle<Match : MatchModel> : ObservableObject {
     @Published private(set) var apiState = ApiState.notInitialized
     
     let userParameters : UserParameters
+    let userLogged : UserLogged
     
-    init(with userParameters: UserParameters) {
+    init(with userParameters: UserParameters, for userLogged: UserLogged) {
         self.userParameters = userParameters
+        self.userLogged = userLogged
     }
     
     func setEmpty() {
@@ -29,14 +31,18 @@ protocol RefreshableMatchesBundle {
 }
 
 extension MatchesBundle : RefreshableMatchesBundle where Match == RemoteMatchModel {
-    typealias ModelRemoteApi = Match.RemoteApi
+    typealias MatchRemoteApi = Match.RemoteApi
+    // FIXME: use a UserBetModel instead ?
+    typealias UserBetRemoteApi = BackendApi.UserBet
     
     @MainActor
     func fetchMatches(of competitionEditionId: CompetitionEditionModel.ID) async {
 //        apiState = .fetching
         do {
-            let response = try await ModelRemoteApi.GetAll(of: "\(competitionEditionId)").call()
-            matches = try initMatches(from: response)
+            let getAllResponse = try await MatchRemoteApi.GetAll(of: "\(competitionEditionId)").call()
+            matches = try initMatches(from: getAllResponse)
+
+            
             apiState = .loaded
         } catch {
             apiState = .failed(error.localizedDescription)
@@ -44,7 +50,7 @@ extension MatchesBundle : RefreshableMatchesBundle where Match == RemoteMatchMod
     }
     
     
-    internal func initMatches(from dtoList: [ModelRemoteApi.GetAll.DTO]) throws -> [Match] {
+    internal func initMatches(from dtoList: [MatchRemoteApi.GetAll.DTO]) throws -> [Match] {
         return dtoList.map{
             var match = RemoteMatchModel(remoteData: $0)
             if userParameters.parametersModel.fictiveBetsData {

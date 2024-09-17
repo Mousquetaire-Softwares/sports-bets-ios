@@ -10,11 +10,20 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject var userLogged : UserLogged
+    @ObservedObject var userLogged : UserLogged
     @Query private var items: [Item]
-    @StateObject private var userLogin = UserLogin()
-    @StateObject private var userParameters = UserParameters()
+    @StateObject private var userLogin  = UserLogin()
+    @StateObject private var userParameters  = UserParameters()
+    @StateObject private var competitionsLibrary : CompetitionsLibrary
+
     @State private var navigationPath = NavigationPath()
+    
+    internal init(userLogged: UserLogged) {
+        self.userLogged = userLogged
+        _competitionsLibrary = StateObject(wrappedValue: CompetitionsLibrary(for: userLogged))
+    }
+    
+    
     
     enum Navigation {
         case userParameters
@@ -22,7 +31,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
-            CompetitionsMenuView()
+            CompetitionsMenuView(competitionsLibrary: competitionsLibrary)
                 .environmentObject(userParameters)
                 .toolbar {
                     ToolbarItem (placement: .topBarLeading) {
@@ -91,20 +100,16 @@ struct ContentView: View {
 }
 
 #Preview {
-    let lib = CompetitionsLibrary()
     let userLogged = UserLogged()
-    return ContentView()
+    return ContentView(userLogged: userLogged)
         .modelContainer(for: Item.self, inMemory: true)
         .environmentObject(userLogged)
-        .environmentObject(lib)
 }
 
 #Preview {
-    let lib = CompetitionsLibrary()
     let userLogged = UserLogged()
-    return ContentView()
+    return ContentView(userLogged: userLogged)
         .modelContainer(for: Item.self, inMemory: true)
-        .environmentObject(lib)
         .environmentObject(userLogged)
         .environment(\.locale, Locale(identifier: "fr-FR"))
 }

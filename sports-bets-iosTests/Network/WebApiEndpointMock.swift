@@ -9,6 +9,8 @@ import Foundation
 @testable import sports_bets_ios
 
 struct WebApiEndpointMock<DTO : Codable> : WebApiEndpoint {
+    var token: String?
+    
     var baseUrl: URL
     
     var queryItems: [URLQueryItem]?

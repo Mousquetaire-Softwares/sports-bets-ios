@@ -72,6 +72,7 @@ struct MatchesListView<Match : MatchModel>: View {
 
 #Preview {
     let userParameters = UserParameters()
-    let bundle = MatchesBundle<RemoteMatchModel>(with: userParameters)
+    let userLogged = UserLogged()
+    let bundle = MatchesBundle<RemoteMatchModel>(with: userParameters, for: userLogged)
     return MatchesListView(matchesBundle: bundle, competitionEditionId: 4)
 }

@@ -10,7 +10,6 @@ import SwiftData
 
 @main
 struct sports_bets_iosApp: App {
-    @StateObject var competitionsLibrary = CompetitionsLibrary()
     @StateObject var userLogged = UserLogged()
     
     var sharedModelContainer: ModelContainer = {
@@ -28,8 +27,7 @@ struct sports_bets_iosApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(competitionsLibrary)
+            ContentView(userLogged: userLogged)
                 .environmentObject(userLogged)
         }
         .modelContainer(sharedModelContainer)

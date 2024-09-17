@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CompetitionsMenuView: View {
-    @EnvironmentObject var competitionsLibrary : CompetitionsLibrary
+    @ObservedObject var competitionsLibrary : CompetitionsLibrary
     @EnvironmentObject var userParameters : UserParameters
     
     var body: some View {
@@ -51,10 +51,9 @@ struct CompetitionsMenuView: View {
 }
 
 #Preview {
-    let lib = CompetitionsLibrary()
     let userParameters = UserParameters()
-//    Task { await lib.fetchCompetitions() }
-    return CompetitionsMenuView()
-        .environmentObject(lib)
+    let userLogged = UserLogged()
+    let lib = CompetitionsLibrary(for: userLogged)
+    return CompetitionsMenuView(competitionsLibrary: lib)
         .environmentObject(userParameters)
 }

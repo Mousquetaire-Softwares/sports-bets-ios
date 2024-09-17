@@ -10,17 +10,20 @@ import XCTest
 
 final class MatchesBundleTests: XCTestCase {
     typealias RemoteSut = MatchesBundle<RemoteMatchModel>
+    var userLogged : UserLogged!
     var sutRemote : RemoteSut!
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         let userParameters = UserParameters()
-        sutRemote = RemoteSut(with: userParameters)
+        userLogged = UserLogged()
+        sutRemote = RemoteSut(with: userParameters,for: userLogged)
         
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        userLogged = nil
         sutRemote = nil
     }
 
